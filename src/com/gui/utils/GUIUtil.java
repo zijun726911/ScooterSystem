@@ -48,7 +48,7 @@ public class GUIUtil {// 单例
 		@Override
 		// 后台任务在此方法中实现
 		protected Void doInBackground() throws Exception {
-			// 模拟有一百项任务，每次睡1s
+		
 			for (int i = number; i >= 0; i--) {
 				Thread.sleep(1000);
 				publish(i);// 将当前进度信息加入chunks中
