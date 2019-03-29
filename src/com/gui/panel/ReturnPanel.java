@@ -13,13 +13,13 @@ import com.entity.SlotState;
 import com.entity.Station;
 import com.gui.utils.GUIUtil;
 
-public class RentPanel extends JPanel{
+public class ReturnPanel extends JPanel{
 	
 	public JLabel labeltimer;
 	public JButton btnTakeOut ;
 	
 	
-	public RentPanel() {
+	public ReturnPanel() {
 		// TODO Auto-generated constructor stub
 		
 		JSeparator separator_1 = new JSeparator();
@@ -31,13 +31,13 @@ public class RentPanel extends JPanel{
 		lblTheLockOf.setBounds(79, 15, 150, 49);
 		this.add(lblTheLockOf);
 		
-		btnTakeOut = new JButton("RETURN");
+		btnTakeOut = new JButton("TAKE OUT");
 		btnTakeOut.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 25));
 		btnTakeOut.setBounds(355, 79, 190, 43);
 		
 		this.add(btnTakeOut);
 		
-		JLabel lblHasBeenReleased = new JLabel("has been released, please return the scooter within");
+		JLabel lblHasBeenReleased = new JLabel("has been released, please take the scooter out within");
 		lblHasBeenReleased.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
 		lblHasBeenReleased.setBounds(255, 15, 513, 49);
 		this.add(lblHasBeenReleased);

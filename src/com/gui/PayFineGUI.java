@@ -1,20 +1,14 @@
-package aaaa.gui;
+package com.gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import java.awt.GridLayout;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JToggleButton;
-import javax.swing.JComboBox;
+
+import com.gui.utils.GUIUtil;
 
 public class PayFineGUI extends JFrame {
 

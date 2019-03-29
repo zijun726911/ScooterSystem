@@ -1,4 +1,5 @@
-package aaaa.gui;
+package com.gui;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -13,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-public class StationQueryGUI extends JFrame {
+public class StationShowOtherStationGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -25,7 +26,7 @@ public class StationQueryGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StationQueryGUI frame = new StationQueryGUI();
+					StationShowOtherStationGUI frame = new StationShowOtherStationGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,12 +38,16 @@ public class StationQueryGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StationQueryGUI() {
+	public StationShowOtherStationGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 717, 502);
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
+		
+		JLabel lblUsingCondition = new JLabel("Using Condition");
+		lblUsingCondition.setBounds(15, 15, 140, 28);
+		contentPane.add(lblUsingCondition);
 		
 		JLabel lblStation = new JLabel("Station");
 		lblStation.setBounds(49, 79, 81, 21);
@@ -108,9 +113,18 @@ public class StationQueryGUI extends JFrame {
 		label_8.setBounds(544, 270, 81, 21);
 		contentPane.add(label_8);
 		
-		JLabel lblPleaseInputYour = new JLabel("Scooters in use: 10");
-		lblPleaseInputYour.setBounds(30, 318, 255, 21);
+		JLabel lblPleaseInputYour = new JLabel("Please input your QM number:");
+		lblPleaseInputYour.setBounds(187, 327, 285, 21);
 		contentPane.add(lblPleaseInputYour);
+		
+		JTextField inputID = new JTextField();
+		inputID.setBounds(223, 375, 178, 28);
+		contentPane.add(inputID);
+		inputID.setColumns(10);
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.setBounds(442, 374, 70, 28);
+		contentPane.add(btnOk);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(15, 115, 597, 262);
@@ -138,14 +152,6 @@ public class StationQueryGUI extends JFrame {
 		separator_5.setOrientation(SwingConstants.VERTICAL);
 		separator_5.setBounds(485, 58, 166, 239);
 		contentPane.add(separator_5);
-		
-		JLabel lblTotalAvailableScooters = new JLabel("Total available scooters: 14");
-		lblTotalAvailableScooters.setBounds(30, 356, 255, 21);
-		contentPane.add(lblTotalAvailableScooters);
-		
-		JLabel lblTotalScooters = new JLabel("Total scooters: 24");
-		lblTotalScooters.setBounds(30, 398, 255, 21);
-		contentPane.add(lblTotalScooters);
 		
 	}
 }

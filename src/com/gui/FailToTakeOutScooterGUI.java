@@ -1,16 +1,15 @@
 package com.gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTabbedPane;
 
-public class alertNinthGUI extends JFrame {
+import com.gui.utils.GUIUtil;
+
+public class FailToTakeOutScooterGUI extends JFrame {
 
 	private JPanel contentPane;
 
@@ -21,7 +20,7 @@ public class alertNinthGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					alertNinthGUI frame = new alertNinthGUI();
+					FailToTakeOutScooterGUI frame = new FailToTakeOutScooterGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +32,7 @@ public class alertNinthGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public alertNinthGUI() {
+	public FailToTakeOutScooterGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -41,23 +40,23 @@ public class alertNinthGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Return the Scooter Successfully ;-)");
-		lblNewLabel.setFont(new Font("SimSun", Font.PLAIN, 18));
-		lblNewLabel.setBounds(53, 51, 315, 21);
+		JLabel lblNewLabel = new JLabel("Fail to Take Out the Scooter :(");
+		lblNewLabel.setBounds(69, 51, 279, 21);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Go to next page in");
-		lblNewLabel_1.setBounds(72, 147, 162, 21);
+		JLabel lblNewLabel_1 = new JLabel("Back to main page in");
+		lblNewLabel_1.setBounds(53, 147, 180, 21);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("seconds");
-		lblNewLabel_2.setBounds(282, 147, 63, 21);
+		lblNewLabel_2.setBounds(309, 147, 63, 21);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
 		GUIUtil.getInstance().countDown(lblNewLabel_3, 5);
 		lblNewLabel_3.setBounds(263, 208, 14, 21);
-		lblNewLabel_3.setBounds(249, 147, 24, 21);
+		lblNewLabel_3.setBounds(263, 147, 27, 21);
 		contentPane.add(lblNewLabel_3);
 	}
+
 }

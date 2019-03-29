@@ -1,10 +1,9 @@
 package com.gui.utils;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 public class GUIUtil {// 单例
@@ -13,14 +12,21 @@ public class GUIUtil {// 单例
 	private GUIUtil() {
 
 	}
-
+	
 	public static GUIUtil getInstance() {
-		// 第一次访问的时候，发现instance没有指向任何对象，这时实例化一个对象
+		
 		if (null == instance) {
 			instance = new GUIUtil();
 		}
-		// 返回 instance指向的对象
+		
 		return instance;
+	}
+	
+	 public static void  jump(JFrame from, JFrame  to) {
+		 from.setVisible(false);
+		 from.dispose();
+		 to.setVisible(true);
+		 
 	}
 
 	public void countDown(JLabel lb, int number) {
@@ -30,11 +36,7 @@ public class GUIUtil {// 单例
 	}
 	
 	
-	public void flashLight(JLabel lightImg) {
 
-		new FlashSwingWorker(lightImg).execute();
-
-	}
 
 	private class CountDownSwingWorker extends SwingWorker<Void, Integer> {
 		private JLabel lb;
@@ -65,34 +67,7 @@ public class GUIUtil {// 单例
 		}
 	}
 
-	private class FlashSwingWorker extends SwingWorker<Void, Void> {
-		private JLabel lightImg;
-		private boolean flicker;
-		
-		FlashSwingWorker(JLabel lightImg) {
-			this.lightImg = lightImg;
-			flicker=true;
-		}
-
-		@Override
-		protected Void doInBackground() throws Exception {
-			
-			while(true) {
-				Thread.sleep(500);
-				
-				publish();
-			}
-
-		}
-		@Override
-		protected void process(List<Void> chunks) {
-			flicker=!flicker;
-			lightImg.setVisible(flicker);
-
-			
-		}
-
-	}
+	
 
 	
 }

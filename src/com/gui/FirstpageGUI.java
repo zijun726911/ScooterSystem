@@ -1,4 +1,4 @@
-package gui.panel;
+package com.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
-public class firstpageGUI extends JFrame {
+public class FirstpageGUI extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -17,7 +17,7 @@ public class firstpageGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					firstpageGUI frame = new firstpageGUI();
+					FirstpageGUI frame = new FirstpageGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +29,7 @@ public class firstpageGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public firstpageGUI() {
+	public FirstpageGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 554, 470);
 		getContentPane().setLayout(null);  

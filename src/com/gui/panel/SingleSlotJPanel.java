@@ -8,41 +8,80 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import com.gui.utils.GUIUtil;
+import com.entity.Slot;
+import com.entity.SlotState;
+import com.gui.LightGUI;
 
 public class SingleSlotJPanel extends JPanel {
-	public SingleSlotJPanel(String slotNumber) {
+	public LightGUI lbLight;
+	
+	public JLabel lbScooter ;
+	public JLabel lbslotNumber ;
+	public Slot slot;
+	
+	public SingleSlotJPanel(Slot slot) {
+		this.slot=slot;
 		setLayout(null);
-		JLabel lbLightImg = new JLabel(new ImageIcon("img/lightOn.png"));
+		lbLight = new LightGUI();
 		
-		lbLightImg.setBounds(36, 34, 32, 32);
-		this.add(lbLightImg);
-		//lbLightImg
-		GUIUtil.getInstance().flashLight(lbLightImg);
+		lbLight.setBounds(36, 34, 32, 32);
+		lbLight.setVisible(false);
+		this.add(lbLight);
 		
-		JLabel lblslotNumber = new JLabel(slotNumber);
-		lblslotNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		lblslotNumber.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		lblslotNumber.setBounds(36, 0, 31, 32);
-		this.add(lblslotNumber);
 		
-		JLabel lbScooter = new JLabel(new ImageIcon("img/scooter.png"));
+		lbslotNumber = new JLabel(slot.getId());
+		lbslotNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		lbslotNumber.setFont(new Font("微软雅黑", Font.BOLD, 20));
+		lbslotNumber.setBounds(36, 0, 31, 32);
+		
+		this.add(lbslotNumber);
+		
+		lbScooter = new JLabel(new ImageIcon("img/scooter.png"));
+		lbScooter.setVisible(false);
 		lbScooter.setBounds(29, 85, 50, 48);
 		this.add(lbScooter);
+		
+		switchTo(slot.getSlotState());
+		
+		
+		
 		
 		
 		
 	}
 	
+	public void switchTo(SlotState state) {
+		switch (state) {
+			case LOCK_EMPTY:
+				lbLight.setVisible(false);
+				lbScooter.setVisible(false);
+				break;
+				
+			case LOCK_HAS_SCOOTER:
+				lbLight.setVisible(false);
+				lbScooter.setVisible(true);
+				break;
+				
+			case RELEASED_NOT_PICKUP:
+				lbLight.flashLight();
+				lbScooter.setVisible(true);
+
+				break;
+		}
+		
+	}
+	
 	public void paint(Graphics graphics) {
-		// 1.调用父类完成初始化任务
+		
 				super.paint(graphics);
-		// 简单的画一个圆圈 使用该方法drawOval 参数为 x 坐标 y 坐标 宽度 高度 单位都是像素
-		// x 坐标和 y 坐标 为距离我们GUI界面左上角的位置的像素
+		
 				int initx=20;
 				int inity=140;
 				graphics.fillRect(initx, inity, 5, 10);
 				graphics.fillRect(initx, inity+10, 65, 5);
 				graphics.fillRect(initx+60, inity, 5, 10);
 			}
+	
+	
+
 }

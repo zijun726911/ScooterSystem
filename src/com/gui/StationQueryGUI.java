@@ -1,4 +1,4 @@
-package aaaa.gui;
+package com.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

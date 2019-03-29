@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class PersonalInformationPanel extends JPanel {
+	public JButton btnRentOrReturn;
+	public JTextField jtfinputId;
+
 	public PersonalInformationPanel() {
 		// TODO Auto-generated constructor stub
 		JLabel lblPersonalInformation = new JLabel("Personal Information");
@@ -22,16 +25,17 @@ public class PersonalInformationPanel extends JPanel {
 		lblInputYouId.setBounds(15, 44, 140, 46);
 		this.add(lblInputYouId);
 		
-		JTextField jtfinputId = new JTextField();
+		jtfinputId = new JTextField();
 		jtfinputId.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
 		jtfinputId.setBounds(152, 47, 176, 40);
 		jtfinputId.setColumns(10);
 		this.add(jtfinputId);
 		
-		JButton btnNewButton = new JButton("<html>simulate to swipe<br /> your card</html>");
-		btnNewButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
-		btnNewButton.setBounds(121, 105, 189, 70);
-		this.add(btnNewButton);
+		btnRentOrReturn = new JButton("<html>simulate to swipe<br /> your card</html>");
+		btnRentOrReturn.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
+		btnRentOrReturn.setBounds(121, 105, 189, 70);
+		
+		this.add(btnRentOrReturn);
 		
 		JLabel lblId = new JLabel("Id:");
 		lblId.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
