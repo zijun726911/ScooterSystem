@@ -17,6 +17,7 @@ public class RentPanel extends JPanel{
 	
 	public JLabel labeltimer;
 	public JButton btnTakeOut ;
+	public JLabel labelSlotNumber ;
 	
 	
 	public RentPanel() {
@@ -31,13 +32,13 @@ public class RentPanel extends JPanel{
 		lblTheLockOf.setBounds(79, 15, 150, 49);
 		this.add(lblTheLockOf);
 		
-		btnTakeOut = new JButton("RETURN");
+		btnTakeOut = new JButton("PICK UP");
 		btnTakeOut.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 25));
 		btnTakeOut.setBounds(355, 79, 190, 43);
 		
 		this.add(btnTakeOut);
 		
-		JLabel lblHasBeenReleased = new JLabel("has been released, please return the scooter within");
+		JLabel lblHasBeenReleased = new JLabel("has been released, please pick up the scooter within");
 		lblHasBeenReleased.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
 		lblHasBeenReleased.setBounds(255, 15, 513, 49);
 		this.add(lblHasBeenReleased);
@@ -50,10 +51,10 @@ public class RentPanel extends JPanel{
 		labeltimer = new JLabel("60");
 		
 		labeltimer.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
-		labeltimer.setBounds(769, 15, 43, 49);
+		labeltimer.setBounds(767, 15, 43, 49);
 		this.add(labeltimer);
 		
-		JLabel labelSlotNumber = new JLabel("4");
+		labelSlotNumber = new JLabel("1");
 		labelSlotNumber.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
 		labelSlotNumber.setBounds(232, 15, 30, 49);
 		this.add(labelSlotNumber);

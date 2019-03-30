@@ -1,16 +1,16 @@
 package com.entity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
+	
 	private boolean usingScooter;
 	private String id;
 	private String name;
+	private String email;
+	private double unpaidFineFine;
 	
 
-	private String email;
-
-	public boolean isUsingScooter() {
-		return usingScooter;
-	}
 
 	public void setUsingScooter(boolean usingScooter) {
 		this.usingScooter = usingScooter;
@@ -40,7 +40,18 @@ public class User {
 		this.email = email;
 	}
 	
-	
+
+	public double getUnpaidFineFine() {
+		return unpaidFineFine;
+	}
+
+	public void setUnpaidFineFine(double unpaidFineFine) {
+		this.unpaidFineFine = unpaidFineFine;
+	}
+
+	public boolean isUsingScooter() {
+		return usingScooter;
+	}
 	
 	
 	

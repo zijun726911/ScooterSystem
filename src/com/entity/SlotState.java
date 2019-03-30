@@ -1,5 +1,7 @@
 package com.entity;
 
-public enum SlotState {
+import java.io.Serializable;
+
+public enum SlotState implements Serializable{
 	RELEASED_NOT_PICKUP,LOCK_EMPTY,LOCK_HAS_SCOOTER
 }

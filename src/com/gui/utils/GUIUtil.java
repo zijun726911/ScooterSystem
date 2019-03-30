@@ -1,10 +1,15 @@
 package com.gui.utils;
 
+import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingWorker;
+
+import com.entity.StationState;
+import com.gui.StationGUI;
 
 public class GUIUtil {// 데절
 	private static GUIUtil instance;
@@ -12,6 +17,24 @@ public class GUIUtil {// 데절
 	private GUIUtil() {
 
 	}
+	
+	public static StationGUI reconstructStation(StationGUI from) {
+	
+		 StationGUI newStation=null;
+		 try {
+			 newStation=new StationGUI(from.station.getName(),from.getBounds());
+			 newStation.setVisible(true);
+			 newStation.switchTo(StationState.RENT);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 from.dispose();
+		 
+		 return newStation;
+		 
+	}
+	
 	
 	public static GUIUtil getInstance() {
 		

@@ -31,13 +31,13 @@ public class ReturnPanel extends JPanel{
 		lblTheLockOf.setBounds(79, 15, 150, 49);
 		this.add(lblTheLockOf);
 		
-		btnTakeOut = new JButton("TAKE OUT");
+		btnTakeOut = new JButton("RETURN");
 		btnTakeOut.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 25));
 		btnTakeOut.setBounds(355, 79, 190, 43);
 		
 		this.add(btnTakeOut);
 		
-		JLabel lblHasBeenReleased = new JLabel("has been released, please take the scooter out within");
+		JLabel lblHasBeenReleased = new JLabel("has been released, please return the scooter within");
 		lblHasBeenReleased.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
 		lblHasBeenReleased.setBounds(255, 15, 513, 49);
 		this.add(lblHasBeenReleased);
@@ -47,7 +47,7 @@ public class ReturnPanel extends JPanel{
 		lblSeconds.setBounds(799, 15, 87, 49);
 		this.add(lblSeconds);
 		
-		labeltimer = new JLabel("60");
+		labeltimer = new JLabel("600");
 		
 		labeltimer.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
 		labeltimer.setBounds(769, 15, 43, 49);

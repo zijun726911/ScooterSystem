@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import com.entity.Slot;
 import com.entity.SlotState;
 import com.gui.LightGUI;
+import com.gui.utils.GUIUtil;
 
 public class SingleSlotJPanel extends JPanel {
 	public LightGUI lbLight;
@@ -18,6 +19,11 @@ public class SingleSlotJPanel extends JPanel {
 	public JLabel lbScooter ;
 	public JLabel lbslotNumber ;
 	public Slot slot;
+	
+
+	
+	
+	
 	
 	public SingleSlotJPanel(Slot slot) {
 		this.slot=slot;
@@ -42,10 +48,6 @@ public class SingleSlotJPanel extends JPanel {
 		this.add(lbScooter);
 		
 		switchTo(slot.getSlotState());
-		
-		
-		
-		
 		
 		
 	}

@@ -1,5 +1,7 @@
 package com.entity;
 
-public enum StationState {
+import java.io.Serializable;
+
+public enum StationState implements Serializable{
 	BLANK,RENT,RETURN
 }

@@ -9,11 +9,30 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class PersonalInformationPanel extends JPanel {
+import com.db.Session;
+import com.gui.utils.GUIUtil;
+
+public class PersonInfoPanel extends JPanel {
 	public JButton btnRentOrReturn;
 	public JTextField jtfinputId;
+	public JLabel lbId;
+	public JLabel lbName;
+	public JLabel lbEmail;
+	public static PersonInfoPanel instance;
+	public JLabel lbFine;
 
-	public PersonalInformationPanel() {
+	
+	
+	public static PersonInfoPanel getInstance() {
+		
+		if (null == instance) {
+			instance = new PersonInfoPanel();
+		}
+		
+		return instance;
+	}
+
+	private PersonInfoPanel() {
 		// TODO Auto-generated constructor stub
 		JLabel lblPersonalInformation = new JLabel("Personal Information");
 		lblPersonalInformation.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
@@ -61,34 +80,34 @@ public class PersonalInformationPanel extends JPanel {
 		lblEmail.setBounds(508, 69, 74, 46);
 		this.add(lblEmail);
 		
-		JLabel label = new JLabel("2016123456");
-		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-		label.setBounds(594, 0, 140, 46);
-		this.add(label);
+		lbId = new JLabel();
+		lbId.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		lbId.setBounds(594, 0, 140, 46);
+		this.add(lbId);
 		
-		JLabel lblBob = new JLabel("Bob");
-		lblBob.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-		lblBob.setBounds(594, 30, 140, 46);
-		this.add(lblBob);
+		lbName = new JLabel();
+		lbName.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		lbName.setBounds(594, 30, 140, 46);
+		this.add(lbName);
 		
-		JLabel lblBobgmailcom = new JLabel("bob@gmail.com");
-		lblBobgmailcom.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-		lblBobgmailcom.setBounds(594, 69, 207, 46);
-		this.add(lblBobgmailcom);
+		lbEmail = new JLabel();
+		lbEmail.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		lbEmail.setBounds(594, 69, 207, 46);
+		this.add(lbEmail);
 		
 		JLabel lblUnpaidFine = new JLabel("unpaid fine:");
 		lblUnpaidFine.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
 		lblUnpaidFine.setBounds(463, 115, 119, 46);
 		this.add(lblUnpaidFine);
 		
-		JLabel jlUnpaidFine = new JLabel("0");
-		jlUnpaidFine.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-		jlUnpaidFine.setBounds(617, 115, 38, 46);
-		this.add(jlUnpaidFine);
+//		JLabel lbFine = new JLabel("\\uFFE1 0");
+//		lbFine.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+//		lbFine.setBounds(617, 115, 38, 46);
+//		this.add(lbFine);
 		
-		JLabel label_2 = new JLabel("\uFFE1");
-		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-		label_2.setBounds(594, 115, 38, 46);
-		this.add(label_2);
+		JLabel lbFine = new JLabel("\uFFE1 0");
+		lbFine.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		lbFine.setBounds(594, 115, 38, 46);
+		this.add(lbFine);
 	}
 }

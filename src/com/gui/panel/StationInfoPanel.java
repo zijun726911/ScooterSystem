@@ -11,9 +11,22 @@ import com.entity.Station;
 
 public class StationInfoPanel extends JPanel {
 	Station station;
+	
+	public SingleSlotJPanel singleSlotJPanel1;
+	public SingleSlotJPanel singleSlotJPanel2;
+	public SingleSlotJPanel singleSlotJPanel3;
+	public SingleSlotJPanel singleSlotJPanel4;
+	public SingleSlotJPanel singleSlotJPanel5;
+	public SingleSlotJPanel singleSlotJPanel6;
+	public SingleSlotJPanel singleSlotJPanel7;
+	public SingleSlotJPanel singleSlotJPanel8;
+
+	
+	
+	
 	public StationInfoPanel(Station station) {
 		this.station=station;
-		Iterator<Slot> nextSlot=station.getSlots().iterator();
+		this.setBounds(0, 0, 964, 265);
 		// TODO Auto-generated constructor stub
 		JLabel lblNewLabel = new JLabel("Station");
 		lblNewLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 30));
@@ -35,35 +48,37 @@ public class StationInfoPanel extends JPanel {
 		label_1.setBounds(724, 30, 81, 39);
 		this.add(label_1);
 		
-		JPanel panelSlotInfo1 = new SingleSlotJPanel(nextSlot.next());
-		panelSlotInfo1.setBounds(32, 87, 100, 173);
-		this.add(panelSlotInfo1);
+		Iterator<Slot> nextSlot=station.getSlots().iterator();
 		
-		SingleSlotJPanel singleSlotJPanel2 = new SingleSlotJPanel(nextSlot.next());
+		singleSlotJPanel1 = new SingleSlotJPanel(nextSlot.next());
+		singleSlotJPanel1.setBounds(32, 87, 100, 173);
+		this.add(singleSlotJPanel1);
+		
+		singleSlotJPanel2 = new SingleSlotJPanel(nextSlot.next());
 		singleSlotJPanel2.setBounds(147, 87, 100, 173);
 		this.add(singleSlotJPanel2);
 		
-		SingleSlotJPanel singleSlotJPanel3 = new SingleSlotJPanel(nextSlot.next());
+		singleSlotJPanel3 = new SingleSlotJPanel (nextSlot.next());
 		singleSlotJPanel3.setBounds(262, 87, 100, 173);
 		this.add(singleSlotJPanel3);
 		
-		SingleSlotJPanel singleSlotJPanel4 = new SingleSlotJPanel(nextSlot.next());
+		singleSlotJPanel4 =new SingleSlotJPanel(nextSlot.next());
 		singleSlotJPanel4.setBounds(377, 87, 100, 173);
 		this.add(singleSlotJPanel4);
 		
-		SingleSlotJPanel singleSlotJPanel5 = new SingleSlotJPanel(nextSlot.next());
+		 singleSlotJPanel5 =new SingleSlotJPanel(nextSlot.next());
 		singleSlotJPanel5.setBounds(492, 87, 100, 173);
 		this.add(singleSlotJPanel5);
 		
-		SingleSlotJPanel singleSlotJPanel6 = new SingleSlotJPanel(nextSlot.next());
+		singleSlotJPanel6 =new SingleSlotJPanel(nextSlot.next());
 		singleSlotJPanel6.setBounds(607, 87, 100, 173);
 		this.add(singleSlotJPanel6);
 		
-		SingleSlotJPanel singleSlotJPanel7 = new SingleSlotJPanel(nextSlot.next());
+		singleSlotJPanel7 =new  SingleSlotJPanel(nextSlot.next());
 		singleSlotJPanel7.setBounds(722, 87, 100, 173);
 		this.add(singleSlotJPanel7);
 		
-		SingleSlotJPanel singleSlotJPanel8 = new SingleSlotJPanel(nextSlot.next());
+		singleSlotJPanel8 =new SingleSlotJPanel(nextSlot.next());
 		singleSlotJPanel8.setBounds(833, 87, 100, 173);
 		this.add(singleSlotJPanel8);
 	}

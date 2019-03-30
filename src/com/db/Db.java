@@ -13,67 +13,12 @@ import com.entity.Station;
 import com.entity.User;
 
 public class Db implements Serializable {
-	public static Db instance;
 	public ArrayList<User> users;
 	public ArrayList<Station> stations;
-
 	
-
-	public static void setInstance(Db instance) {
-		Db.instance = instance;
-	}
-
-	private Db() {
-		users=new ArrayList<User>();
-	}
 	
-	public static Db getInstance() {
+	public static void readFromFile() {
 		
-		if (null == instance) {
-			instance = new Db();
-		}
-		
-		return instance;
-	}
-	
-	public  Station getStationByStationName(String name) {
-		for(Station station: stations) {
-			if(station.getName().equals(name)) {
-				return station;
-			}
-		}
-		return null;
-	}
-	
-	public ArrayList<Slot> loadSlotsByStationName(String name){
-		
-		
-		return null;
-	}
-	
-	
-	
-	public User getUserBy(String id) {
-	
-		for(User user: users) {
-			if(user.getId().equals(id)) {
-				return user;
-			}
-		}
-		return null;
-	}
-	
-	
-	public ArrayList<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(ArrayList<User> users) {
-		this.users = users;
-	}
-	
-	
-	public  Db readFromFile() {
 		File file = new File("dbfile");
 		Db dbRead = null;
 		try {
@@ -85,14 +30,15 @@ public class Db implements Serializable {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		return dbRead;
-        
+		Session.stations=dbRead.stations;
+		Session.users=dbRead.users;
+		 
 	}
 	
-	
 	public void writeToFile() {
-		// TODO Auto-generated method stub
+		
+		this.stations=Session.stations;
+		this.users=Session.users;
 		File dbfile = new File("dbfile");
         ObjectOutputStream oos;
 		try {
@@ -104,9 +50,8 @@ public class Db implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
- 
-        
 	}
+	
 }
 
 

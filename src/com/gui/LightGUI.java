@@ -25,7 +25,7 @@ public class LightGUI extends JLabel{
 		
 		FlashSwingWorker(JLabel lightImg) {
 			this.lightImg = lightImg;
-			flicker=true;
+			flicker=false;
 		}
 
 		@Override

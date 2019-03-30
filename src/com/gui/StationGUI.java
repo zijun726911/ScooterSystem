@@ -1,5 +1,6 @@
 package com.gui;
 
+import java.awt.Rectangle;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -7,12 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.db.Db;
 import com.db.Session;
 import com.entity.SlotState;
 import com.entity.Station;
 import com.entity.StationState;
-import com.gui.panel.PersonalInformationPanel;
+import com.entity.User;
+import com.gui.panel.PersonInfoPanel;
 import com.gui.panel.RentOrReturnBlank;
 import com.gui.panel.RentPanel;
 import com.gui.panel.ReturnPanel;
@@ -21,41 +22,36 @@ import com.service.ScooterService;
 
 public class StationGUI extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private PersonalInformationPanel pInfo;
-	private RentPanel pRent;
-	private RentOrReturnBlank pblank;
-	private ReturnPanel pReturn;
-	
-	Station station;
-	StationInfoPanel pStationInfo ;
+	public JPanel contentPane;
+	public JTextField textField;
+	public PersonInfoPanel pPersonInfo;
+	public RentPanel pRent;
+	public RentOrReturnBlank pblank;
+	public ReturnPanel pReturn;
+	public Station station;
+	//Station station;
+	public StationInfoPanel pStationInfo ;
 
 	
-	private static StationGUI instance;
-
-
 	
-	public static StationGUI getInstance(String stationName)  {
+	public StationGUI(String stationName,Rectangle bound) throws IOException {
+		this(stationName);
+		this.setBounds(bound);
 		
-		if (null == instance) {
-			try {
-				instance = new StationGUI(stationName);
-				instance.switchTo(StationState.BLANK);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		return instance;
 	}
+
 	
 	
-	private StationGUI(String stationName) throws IOException {
+	
+	
+	public StationGUI(String stationName) throws IOException {
 		
 		
-		this.station=Db.getInstance().getStationByStationName(stationName);
+		
+		station=Session.getStationByStationName(stationName);
+		
+		
+		
 		setTitle("Station Bulletin Board");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 986, 662);
@@ -64,8 +60,8 @@ public class StationGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		pStationInfo = new StationInfoPanel();
-		pStationInfo.setBounds(0, 0, 964, 265);
+		pStationInfo = new StationInfoPanel(station);
+		
 		contentPane.add(pStationInfo);
 		pStationInfo.setLayout(null);
 		
@@ -91,43 +87,58 @@ public class StationGUI extends JFrame {
 		
 		
 		
-		pInfo = new PersonalInformationPanel();
-		pInfo.setBounds(0, 265, 964, 188);
-		contentPane.add(pInfo);
-		pInfo.setLayout(null);
-		pInfo.btnRentOrReturn.addActionListener((e)->{
-			String userId=pInfo.jtfinputId.getText();
+		pPersonInfo = PersonInfoPanel.getInstance();
+		pPersonInfo.setBounds(0, 265, 964, 188);
+		contentPane.add(pPersonInfo);
+		pPersonInfo.setLayout(null);
+		pPersonInfo.btnRentOrReturn.addActionListener((e)->{
+			String userId=pPersonInfo.jtfinputId.getText();
 			
-			ScooterService.rentOrReturn(userId, station, pRent.labeltimer);
+			ScooterService.rentOrReturn(userId, station,this);
 		});
 		
 		
 		pRent.btnTakeOut.addActionListener((e)->{
 			Session.chosenSlot.setSlotState(SlotState.LOCK_EMPTY);;
 		});
-		
+		this.switchTo(StationState.BLANK);
 		
 	}
 	
 	
 	public void switchTo(StationState state) {
+		User currentUser=Session.currentUser;
 		switch (state) {
 			case BLANK:
 				pRent.setVisible(false);
 				pReturn.setVisible(false);
 				pblank.setVisible(true);
+				pPersonInfo.lbId.setText("");
+				pPersonInfo.lbName.setText("");
+				pPersonInfo.lbEmail.setText("");
+				pPersonInfo.jtfinputId.setText("");
+				pPersonInfo.lbFine.setText("");
 				break;
 				
 			case RENT:
 				pRent.setVisible(true);
 				pReturn.setVisible(false);
 				pblank.setVisible(false);
+				
+				pPersonInfo.lbId.setText(currentUser.getId());
+				pPersonInfo.lbName.setText(currentUser.getName());
+				pPersonInfo.lbEmail.setText(currentUser.getEmail());
+				pPersonInfo.lbFine.setText(""+currentUser.getUnpaidFineFine());
 				break;
 				
 			case RETURN:
 				pRent.setVisible(false);
 				pReturn.setVisible(true);
 				pblank.setVisible(false);
+				
+				pPersonInfo.lbId.setText(currentUser.getId());
+				pPersonInfo.lbName.setText(currentUser.getName());
+				pPersonInfo.lbEmail.setText(currentUser.getEmail());
 				break;
 		}
 			

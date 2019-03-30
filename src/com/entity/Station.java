@@ -1,10 +1,11 @@
 package com.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.db.Db;
 
-public class Station {
+public class Station implements Serializable{
 	
 	private String name;
 	private ArrayList<Slot> slots;

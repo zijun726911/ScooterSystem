@@ -19,7 +19,7 @@ class GUITest {
 	
 	public static void main(String[] args) {
 		JOptionPane.showMessageDialog(null,"Fail to pick up the scooter", 
-				"Fail to pick up the scooter!",JOptionPane.);
+				"Fail to pick up the scooter!",JOptionPane.PLAIN_MESSAGE);
 	}
 
 }

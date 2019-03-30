@@ -1,11 +1,10 @@
 package com.entity;
 
-import javax.swing.JLabel;
+import java.io.Serializable;
 
-import com.gui.panel.SingleSlotJPanel;
-import com.gui.utils.GUIUtil;
+import com.db.Db;
 
-public class Slot {
+public class Slot implements Serializable {
 
 	private String id;
 	
@@ -15,7 +14,8 @@ public class Slot {
 	private SlotState slotState;
 
 	
-	public Slot() {
+	public Slot(String id) {
+		this.id=id;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -32,6 +32,7 @@ public class Slot {
 
 	public void setSlotState(SlotState slotState) {
 		this.slotState = slotState;
+		
 	}
 
 

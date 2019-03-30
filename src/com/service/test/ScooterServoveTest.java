@@ -12,14 +12,11 @@ class ScooterServoveTest {
 	
 	
 	public static void main(String[] args) {
-		User u=new User();
-		u.setId("123");
-		u.setName("Bob");
-		u.setEmail("bob@gmail.com");
-		Db.getInstance().getUsers().add(u);
+		Db.readFromFile();
+		
 		EventQueue.invokeLater(()->{
 				try {
-					StationGUI frame = StationGUI.getInstance("A");
+					StationGUI frame =new StationGUI("A");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
