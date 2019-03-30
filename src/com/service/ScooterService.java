@@ -47,13 +47,12 @@ public class ScooterService {
 						Session.currentUser.setUsingScooter(false);
 						stationGUI.switchTo(StationState.BLANK);
 						
-						
-						
 						Record record=Session.currentUser.getRecords()
 								.get(Session.currentUser.getRecords().size()-1);
-						
+						record.setEndStation(station.getName());
 						record.setEnd();
-						
+//						System.out.println(Session.users
+//								.get(0).getRecords().get(0).durSec);
 						
 						JOptionPane.showMessageDialog(null,"Return successful!", 
 								"Return successful",JOptionPane.PLAIN_MESSAGE);

@@ -3,18 +3,18 @@ package com.entity;
 import java.util.Date;
 
 public class Record {
-	private Date startTime;
-	private Date endTime;
-	private String startStation;
-	private String endStation;
+	public Date startTime;
+	public Date endTime;
+	public String startStation;
+	public String endStation;
 	
-	long durHour;
-	long durMin;
-	long durSec;
-	long day;
-	long hour;
-	long min;
-	long sec;
+	public long durHour;
+	public long durMin;
+	public long durSec;
+	public long day;
+	public long hour;
+	public long min;
+	public long sec;
 	
 
 	private void calculateDuration() {

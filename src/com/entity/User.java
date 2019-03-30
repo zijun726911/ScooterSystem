@@ -18,7 +18,7 @@ public class User implements Serializable{
 		for(Record r:records) {
 			if(r.durMin>30) {
 				unpaidFineFine=100;
-				break;
+				return;
 			}
 			
 		}
@@ -40,7 +40,7 @@ public class User implements Serializable{
 			
 			if(onDayAccusec>2*60*60) {
 				unpaidFineFine=100;
-				break;
+				return;
 			}
 		}
 		
