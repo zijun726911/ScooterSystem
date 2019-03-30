@@ -92,6 +92,11 @@ public class StationGUI extends JFrame {
 		pRent.btnTakeOut.addActionListener((e)->{
 			Session.chosenSlot.setSlotState(SlotState.LOCK_EMPTY);;
 		});
+		
+		pReturn.btnTakeOut.addActionListener((e)->{
+			Session.chosenSlot.setSlotState(SlotState.LOCK_HAS_SCOOTER);
+		});
+		
 		this.switchTo(StationState.BLANK);
 		
 	}
@@ -129,7 +134,7 @@ public class StationGUI extends JFrame {
 				pPersonInfo.lbId.setText(currentUser.getId());
 				pPersonInfo.lbName.setText(currentUser.getName());
 				pPersonInfo.lbEmail.setText(currentUser.getEmail());
-				pPersonInfo.lbFine.setText(""+currentUser.getUnpaidFineFine());
+				pPersonInfo.lbFine.setText("\uFFE1 "+currentUser.getUnpaidFineFine());
 				pPersonInfo.jtfinputId.setText(currentUser.getId());
 				break;
 				
@@ -141,6 +146,7 @@ public class StationGUI extends JFrame {
 				pPersonInfo.lbId.setText(currentUser.getId());
 				pPersonInfo.lbName.setText(currentUser.getName());
 				pPersonInfo.lbEmail.setText(currentUser.getEmail());
+				pPersonInfo.lbFine.setText("\uFFE1 "+currentUser.getUnpaidFineFine());
 				pPersonInfo.jtfinputId.setText(currentUser.getId());
 				break;
 		}

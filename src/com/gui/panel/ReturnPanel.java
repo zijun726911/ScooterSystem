@@ -17,6 +17,7 @@ public class ReturnPanel extends JPanel{
 	
 	public JLabel labeltimer;
 	public JButton btnTakeOut ;
+	public JLabel labelSlotNumber ;
 	
 	
 	public ReturnPanel() {
@@ -47,13 +48,13 @@ public class ReturnPanel extends JPanel{
 		lblSeconds.setBounds(799, 15, 87, 49);
 		this.add(lblSeconds);
 		
-		labeltimer = new JLabel("600");
+		labeltimer = new JLabel("60");
 		
 		labeltimer.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
-		labeltimer.setBounds(769, 15, 43, 49);
+		labeltimer.setBounds(767, 15, 40, 49);
 		this.add(labeltimer);
 		
-		JLabel labelSlotNumber = new JLabel("4");
+		labelSlotNumber = new JLabel();
 		labelSlotNumber.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
 		labelSlotNumber.setBounds(232, 15, 30, 49);
 		this.add(labelSlotNumber);

@@ -69,6 +69,11 @@ public class SingleSlotJPanel extends JPanel {
 				lbScooter.setVisible(true);
 
 				break;
+				
+			case RELEASED_EMPTY:
+				lbLight.flashLight();
+				lbScooter.setVisible(false);
+				break;
 		}
 		
 	}

@@ -49,12 +49,12 @@ public class RentPanel extends JPanel{
 		this.add(lblSeconds);
 		
 		labeltimer = new JLabel("60");
-		
+
 		labeltimer.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
-		labeltimer.setBounds(767, 15, 43, 49);
+		labeltimer.setBounds(767, 15, 40, 49);
 		this.add(labeltimer);
 		
-		labelSlotNumber = new JLabel("1");
+		labelSlotNumber = new JLabel();
 		labelSlotNumber.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
 		labelSlotNumber.setBounds(232, 15, 30, 49);
 		this.add(labelSlotNumber);

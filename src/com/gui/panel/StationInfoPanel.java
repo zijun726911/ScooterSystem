@@ -46,7 +46,8 @@ public class StationInfoPanel extends JPanel {
 		
 		int availablenum=0;
 		for(Slot s:station.getSlots()) {
-			if(s.getSlotState()!=SlotState.LOCK_EMPTY) {
+			if(s.getSlotState()==SlotState.LOCK_HAS_SCOOTER
+					||s.getSlotState()==SlotState.RELEASED_NOT_PICKUP) {
 				availablenum++;
 			}
 		}

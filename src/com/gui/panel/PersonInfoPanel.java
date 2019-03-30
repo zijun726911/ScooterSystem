@@ -95,19 +95,16 @@ public class PersonInfoPanel extends JPanel {
 		lbEmail.setBounds(594, 69, 207, 46);
 		this.add(lbEmail);
 		
-		JLabel lblUnpaidFine = new JLabel("unpaid fine:");
+		JLabel lblUnpaidFine = new JLabel("Unpaid fine:");
 		lblUnpaidFine.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
 		lblUnpaidFine.setBounds(463, 115, 119, 46);
 		this.add(lblUnpaidFine);
 		
-//		JLabel lbFine = new JLabel("\\uFFE1 0");
-//		lbFine.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-//		lbFine.setBounds(617, 115, 38, 46);
-//		this.add(lbFine);
+
 		
-		lbFine = new JLabel("\uFFE1 0");
+		lbFine = new JLabel();
 		lbFine.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-		lbFine.setBounds(594, 115, 60, 46);
+		lbFine.setBounds(594, 115, 65, 46);
 		this.add(lbFine);
 	}
 }
