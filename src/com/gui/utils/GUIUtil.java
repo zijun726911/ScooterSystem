@@ -11,7 +11,7 @@ import javax.swing.SwingWorker;
 import com.entity.StationState;
 import com.gui.StationGUI;
 
-public class GUIUtil {// µ¥Àý
+public class GUIUtil {
 	private static GUIUtil instance;
 
 	private GUIUtil() {

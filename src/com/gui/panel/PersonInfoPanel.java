@@ -18,21 +18,13 @@ public class PersonInfoPanel extends JPanel {
 	public JLabel lbId;
 	public JLabel lbName;
 	public JLabel lbEmail;
-	public static PersonInfoPanel instance;
 	public JLabel lbFine;
 
 	
 	
-	public static PersonInfoPanel getInstance() {
-		
-		if (null == instance) {
-			instance = new PersonInfoPanel();
-		}
-		
-		return instance;
-	}
 
-	private PersonInfoPanel() {
+
+	public PersonInfoPanel() {
 		// TODO Auto-generated constructor stub
 		JLabel lblPersonalInformation = new JLabel("Personal Information");
 		lblPersonalInformation.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));

@@ -46,7 +46,7 @@ public class StationGUI extends JFrame {
 		
 		
 		setTitle("Station Bulletin Board");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 986, 662);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,19 +78,21 @@ public class StationGUI extends JFrame {
 		pReturn.setLayout(null);
 		
 		
-		pPersonInfo = PersonInfoPanel.getInstance();
+		pPersonInfo = new PersonInfoPanel();
 		pPersonInfo.setBounds(0, 265, 964, 188);
 		contentPane.add(pPersonInfo);
 		pPersonInfo.setLayout(null);
 		pPersonInfo.btnRentOrReturn.addActionListener((e)->{
 			String userId=pPersonInfo.jtfinputId.getText();
 			
-			ScooterService.rentOrReturn(userId, station,this);
+			new ScooterService().rentOrReturn(userId, station,StationGUI.this);
+		
+			
 		});
 		
 		
 		pRent.btnTakeOut.addActionListener((e)->{
-			Session.chosenSlot.setSlotState(SlotState.LOCK_EMPTY);;
+			Session.chosenSlot.setSlotState(SlotState.LOCK_EMPTY);
 		});
 		
 		pReturn.btnTakeOut.addActionListener((e)->{
@@ -155,4 +157,7 @@ public class StationGUI extends JFrame {
 		
 		
 	}
+	
+	
+	
 }

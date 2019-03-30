@@ -16,7 +16,7 @@ import com.gui.StationGUI;
 import com.gui.utils.GUIUtil;
 
 public class ScooterService {
-	public static void rentOrReturn(String userId,Station station,StationGUI stationGUI) {
+	public void rentOrReturn(String userId,Station station,StationGUI stationGUI) {
 		
 		
 		
@@ -65,6 +65,7 @@ public class ScooterService {
 		else {
 			//该用户要借车
 			 Session.chosenSlot=findNonEmptySlot(station);
+			 System.out.println(Session.chosenSlot);
 			 Session.chosenSlot.setSlotState(SlotState.RELEASED_NOT_PICKUP);
 			 stationGUI.switchTo(StationState.RENT);
 			 JLabel timer=stationGUI.pRent.labeltimer;
@@ -102,7 +103,7 @@ public class ScooterService {
 			
 	
 	
-	public static Slot findNonEmptySlot(Station station) {
+	public  Slot findNonEmptySlot(Station station) {
 		ArrayList<Slot> slots=station.getSlots();
 		for(Slot slot:slots) {//借车时，释放一个slot
 			if(slot.getSlotState()==SlotState.LOCK_HAS_SCOOTER) {
@@ -114,7 +115,7 @@ public class ScooterService {
 	}
 	
 	
-	public static Slot findEmptySlot(Station station) {
+	public  Slot findEmptySlot(Station station) {
 		ArrayList<Slot> slots=station.getSlots();
 		for(Slot slot:slots) {//借车时，释放一个slot
 			if(slot.getSlotState()==SlotState.LOCK_EMPTY) {
