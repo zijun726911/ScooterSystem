@@ -151,6 +151,18 @@ public class StationGUI extends JFrame {
 				pPersonInfo.lbFine.setText("\uFFE1 "+currentUser.getUnpaidFineFine());
 				pPersonInfo.jtfinputId.setText(currentUser.getId());
 				break;
+				
+			case UNPAID:
+				pRent.setVisible(false);
+				pReturn.setVisible(false);
+				pblank.setVisible(true);
+				
+				pPersonInfo.lbId.setText(currentUser.getId());
+				pPersonInfo.lbName.setText(currentUser.getName());
+				pPersonInfo.lbEmail.setText(currentUser.getEmail());
+				pPersonInfo.lbFine.setText("\uFFE1 "+currentUser.getUnpaidFineFine());
+				pPersonInfo.jtfinputId.setText(currentUser.getId());
+				break;
 		}
 			
 			

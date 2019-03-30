@@ -26,6 +26,14 @@ public class LoadData {
 		u1.setUsingScooter(false);
 		u1.setUnpaidFineFine(0);
 		Session.users.add(u1);
+		
+		User u2=new User();
+		u2.setId("789");
+		u2.setName("Tom");
+		u2.setEmail("tom@gmail.com");
+		u2.setUsingScooter(false);
+		u2.setUnpaidFineFine(100);
+		Session.users.add(u2);
 	
 		
 		Station stationA=new Station("A");

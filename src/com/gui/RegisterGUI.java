@@ -1,21 +1,28 @@
 package com.gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import com.service.UserService;
+
+
 
 public class RegisterGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField tfUsername;
+	private JTextField tfEmail;
+	private JTextField tfId;
 
 	/**
 	 * Launch the application.
@@ -37,47 +44,72 @@ public class RegisterGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public RegisterGUI() {
+		setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
+		setTitle("Enrolment");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 651, 493);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblRegisterAUser = new JLabel("Register A User");
-		lblRegisterAUser.setBounds(14, 13, 195, 24);
-		contentPane.add(lblRegisterAUser);
 		
-		JLabel lblFullName = new JLabel("Full Name:");
-		lblFullName.setBounds(24, 62, 86, 18);
-		contentPane.add(lblFullName);
+		JLabel lblNewLabel = new JLabel("Name:");
+		lblNewLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
+		lblNewLabel.setBounds(75, 138, 158, 53);
+		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(123, 59, 86, 24);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JLabel lblPassword = new JLabel("E-mail:");
+		lblPassword.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
+		lblPassword.setBounds(75, 189, 146, 53);
+		contentPane.add(lblPassword);
 		
-		JLabel lblQmNumber = new JLabel("QM Number:");
-		lblQmNumber.setBounds(24, 103, 86, 18);
-		contentPane.add(lblQmNumber);
+		JLabel lblRegister = new JLabel("Enrolment");
+		lblRegister.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 33));
+		lblRegister.setBounds(205, 15, 231, 53);
+		contentPane.add(lblRegister);
 		
-		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setBounds(24, 144, 86, 18);
-		contentPane.add(lblEmail);
+		tfUsername = new JTextField();
+		tfUsername.setBounds(233, 151, 245, 35);
+		contentPane.add(tfUsername);
+		tfUsername.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(123, 100, 86, 24);
-		contentPane.add(textField_1);
+		tfEmail = new JTextField();
+		tfEmail.setColumns(10);
+		tfEmail.setBounds(233, 202, 245, 35);
+		contentPane.add(tfEmail);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(123, 141, 86, 24);
-		contentPane.add(textField_2);
+		JButton btnResister = new JButton("register");
+		btnResister.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
+		btnResister.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+	
+				
+				String id=tfId.getText();
+				
+				String name=tfUsername.getText();
+				String email=tfEmail.getText();
+				new UserService().register(id,name,email) ;
+				
+			}
+		});
+		btnResister.setBounds(129, 303, 146, 53);
+		contentPane.add(btnResister);
 		
-		JButton btnConfirm = new JButton("Confirm");
-		btnConfirm.setBounds(158, 198, 113, 27);
-		contentPane.add(btnConfirm);
+		JButton btnCancel = new JButton("cancel");
+		btnCancel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
+		btnCancel.setBounds(334, 303, 132, 53);
+		contentPane.add(btnCancel);
+		
+		JLabel lblAccountId = new JLabel("QM ID:");
+		lblAccountId.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
+		lblAccountId.setBounds(75, 83, 158, 53);
+		contentPane.add(lblAccountId);
+		
+		tfId = new JTextField();
+		tfId.setColumns(10);
+		tfId.setBounds(233, 96, 245, 35);
+		contentPane.add(tfId);
 	}
-
 }

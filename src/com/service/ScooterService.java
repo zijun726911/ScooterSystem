@@ -1,19 +1,18 @@
 package com.service;
 
-import java.awt.Rectangle;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import com.db.Session;
+import com.entity.Record;
 import com.entity.Slot;
 import com.entity.SlotState;
 import com.entity.Station;
 import com.entity.StationState;
 import com.gui.StationGUI;
-import com.gui.utils.GUIUtil;
 
 public class ScooterService {
 	public void rentOrReturn(String userId,Station station,StationGUI stationGUI) {
@@ -46,7 +45,16 @@ public class ScooterService {
 					}
 					if(Session.chosenSlot.getSlotState()==SlotState.LOCK_HAS_SCOOTER) {
 						Session.currentUser.setUsingScooter(false);
-						stationGUI.switchTo(StationState.BLANK);						
+						stationGUI.switchTo(StationState.BLANK);
+						
+						
+						
+						Record record=Session.currentUser.getRecords()
+								.get(Session.currentUser.getRecords().size()-1);
+						
+						record.setEnd();
+						
+						
 						JOptionPane.showMessageDialog(null,"Return successful!", 
 								"Return successful",JOptionPane.PLAIN_MESSAGE);
 						
@@ -63,11 +71,32 @@ public class ScooterService {
 			
 		}
 		else {
+			
 			//该用户要借车
+			if(Session.currentUser.getUnpaidFineFine()>0) {
+				//有未缴罚款无法借车
+				stationGUI.switchTo(StationState.UNPAID);
+				JOptionPane.showMessageDialog(null,"you have unpaid fine, please pay the fine before borrow the scooter!", 
+						"Having unpaid fine",JOptionPane.WARNING_MESSAGE);
+				new Thread(()->{
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					stationGUI.switchTo(StationState.BLANK);
+				
+				}).start();
+				return; 
+				
+			}
+			
+			//可以借车
 			 Session.chosenSlot=findNonEmptySlot(station);
-			 System.out.println(Session.chosenSlot);
 			 Session.chosenSlot.setSlotState(SlotState.RELEASED_NOT_PICKUP);
 			 stationGUI.switchTo(StationState.RENT);
+			 
 			 JLabel timer=stationGUI.pRent.labeltimer;
 			 stationGUI.pRent.labelSlotNumber.setText(Session.chosenSlot.getId());
 
@@ -84,9 +113,19 @@ public class ScooterService {
 					}
 					if(Session.chosenSlot.getSlotState()==SlotState.LOCK_EMPTY) {
 						Session.currentUser.setUsingScooter(true);
-						stationGUI.switchTo(StationState.BLANK);						
+						stationGUI.switchTo(StationState.BLANK);	
+						
+						
+						Record record=new Record();
+						record.setStart();// start rent record
+						record.setStartStation(station.getName());
+						Session.currentUser.getRecords().add(record);
+						
 						JOptionPane.showMessageDialog(null,"Pick up successful!", 
 								"Pick up successful",JOptionPane.PLAIN_MESSAGE);
+						
+						
+					
 						
 						break;
 					}
@@ -127,10 +166,6 @@ public class ScooterService {
 	}
 	
 	
-	
-	
-	
 
-	
 	
 }
