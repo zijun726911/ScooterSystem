@@ -32,13 +32,6 @@ public class StationGUI extends JFrame {
 	//Station station;
 	public StationInfoPanel pStationInfo ;
 
-	
-	
-	public StationGUI(String stationName,Rectangle bound) throws IOException {
-		this(stationName);
-		this.setBounds(bound);
-		
-	}
 
 	
 	
@@ -49,7 +42,7 @@ public class StationGUI extends JFrame {
 		
 		
 		station=Session.getStationByStationName(stationName);
-		
+		this.setBounds(0, 0, 964, 265);
 		
 		
 		setTitle("Station Bulletin Board");
@@ -61,7 +54,7 @@ public class StationGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		pStationInfo = new StationInfoPanel(station);
-		
+		pStationInfo.setBounds(0, 0, 964, 265);
 		contentPane.add(pStationInfo);
 		pStationInfo.setLayout(null);
 		
@@ -85,8 +78,6 @@ public class StationGUI extends JFrame {
 		pReturn.setLayout(null);
 		
 		
-		
-		
 		pPersonInfo = PersonInfoPanel.getInstance();
 		pPersonInfo.setBounds(0, 265, 964, 188);
 		contentPane.add(pPersonInfo);
@@ -107,7 +98,16 @@ public class StationGUI extends JFrame {
 	
 	
 	public void switchTo(StationState state) {
+		
+		contentPane.remove(pStationInfo);
+		pStationInfo = new StationInfoPanel(station);
+		pStationInfo.setBounds(0, 0, 964, 265);
+		contentPane.add(pStationInfo);
+		pStationInfo.setLayout(null);
+		this.contentPane.updateUI();
+		
 		User currentUser=Session.currentUser;
+		
 		switch (state) {
 			case BLANK:
 				pRent.setVisible(false);

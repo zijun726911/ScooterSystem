@@ -26,18 +26,17 @@ public class ScooterService {
 		}
 		else if(Session.currentUser.isUsingScooter()){
 			//该用户要还车
+			
+			
 		}
 		else {
 			//该用户要借车
 			 Session.chosenSlot=findAAvailableSlot(station);
 			 Session.chosenSlot.setSlotState(SlotState.RELEASED_NOT_PICKUP);
-			 
 			
 
-			
-			
-			 stationGUI=GUIUtil.reconstructStation(stationGUI);
-			 
+			 stationGUI.switchTo(StationState.RENT);
+
 			 
 			 JLabel timer=stationGUI.pRent.labeltimer;
 			 stationGUI.pRent.labelSlotNumber.setText(Session.chosenSlot.getId());
@@ -55,14 +54,11 @@ public class ScooterService {
 						e.printStackTrace();
 					}
 					if(Session.chosenSlot.getSlotState()==SlotState.LOCK_EMPTY) {
-						
-						GUIUtil.reconstructStation(stationGUI).switchTo(StationState.BLANK);
-						
+						Session.currentUser.setUsingScooter(true);
+						stationGUI.switchTo(StationState.BLANK);						
 						JOptionPane.showMessageDialog(null,"Pick up successful!", 
 								"Pick up successful",JOptionPane.PLAIN_MESSAGE);
 						
-						
-				
 						break;
 					}
 					if(backEndTimer<=0) {
@@ -98,16 +94,7 @@ public class ScooterService {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 }

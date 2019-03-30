@@ -18,22 +18,7 @@ public class GUIUtil {// µ¥Àý
 
 	}
 	
-	public static StationGUI reconstructStation(StationGUI from) {
 	
-		 StationGUI newStation=null;
-		 try {
-			 newStation=new StationGUI(from.station.getName(),from.getBounds());
-			 newStation.setVisible(true);
-			 newStation.switchTo(StationState.RENT);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		 from.dispose();
-		 
-		 return newStation;
-		 
-	}
 	
 	
 	public static GUIUtil getInstance() {

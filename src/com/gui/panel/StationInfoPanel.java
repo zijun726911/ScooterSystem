@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.entity.Slot;
+import com.entity.SlotState;
 import com.entity.Station;
 
 public class StationInfoPanel extends JPanel {
@@ -26,7 +27,7 @@ public class StationInfoPanel extends JPanel {
 	
 	public StationInfoPanel(Station station) {
 		this.station=station;
-		this.setBounds(0, 0, 964, 265);
+		
 		// TODO Auto-generated constructor stub
 		JLabel lblNewLabel = new JLabel("Station");
 		lblNewLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 30));
@@ -43,7 +44,13 @@ public class StationInfoPanel extends JPanel {
 		lblAvailable.setBounds(621, 27, 100, 45);
 		this.add(lblAvailable);
 		
-		JLabel label_1 = new JLabel("8/8");
+		int availablenum=0;
+		for(Slot s:station.getSlots()) {
+			if(s.getSlotState()!=SlotState.LOCK_EMPTY) {
+				availablenum++;
+			}
+		}
+		JLabel label_1 = new JLabel(availablenum+"/"+station.getSlots().size());
 		label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
 		label_1.setBounds(724, 30, 81, 39);
 		this.add(label_1);
