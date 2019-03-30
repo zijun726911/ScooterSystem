@@ -64,6 +64,7 @@ public class ScooterService {
 								"Fail to return the scooter",JOptionPane.WARNING_MESSAGE);
 						stationGUI.switchTo(StationState.BLANK);
 						break;
+						
 					}
 				}	
 			}).start();
