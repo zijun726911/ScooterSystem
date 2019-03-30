@@ -118,6 +118,7 @@ public class StationGUI extends JFrame {
 				pPersonInfo.lbEmail.setText("");
 				pPersonInfo.jtfinputId.setText("");
 				pPersonInfo.lbFine.setText("");
+				pPersonInfo.jtfinputId.setText("");
 				break;
 				
 			case RENT:
@@ -129,6 +130,7 @@ public class StationGUI extends JFrame {
 				pPersonInfo.lbName.setText(currentUser.getName());
 				pPersonInfo.lbEmail.setText(currentUser.getEmail());
 				pPersonInfo.lbFine.setText(""+currentUser.getUnpaidFineFine());
+				pPersonInfo.jtfinputId.setText(currentUser.getId());
 				break;
 				
 			case RETURN:
@@ -139,6 +141,7 @@ public class StationGUI extends JFrame {
 				pPersonInfo.lbId.setText(currentUser.getId());
 				pPersonInfo.lbName.setText(currentUser.getName());
 				pPersonInfo.lbEmail.setText(currentUser.getEmail());
+				pPersonInfo.jtfinputId.setText(currentUser.getId());
 				break;
 		}
 			

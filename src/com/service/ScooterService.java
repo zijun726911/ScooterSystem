@@ -16,7 +16,7 @@ import com.gui.StationGUI;
 import com.gui.utils.GUIUtil;
 
 public class ScooterService {
-	public static void rentOrReturn(String userId,Station station,StationGUI from) {
+	public static void rentOrReturn(String userId,Station station,StationGUI stationGUI) {
 		
 		
 		
@@ -36,13 +36,13 @@ public class ScooterService {
 
 			
 			
-			 StationGUI stationGUI=GUIUtil.reconstructStation(from);
+			 stationGUI=GUIUtil.reconstructStation(stationGUI);
 			 
 			 
 			 JLabel timer=stationGUI.pRent.labeltimer;
 			 stationGUI.pRent.labelSlotNumber.setText(Session.chosenSlot.getId());
 			 
-			 
+		
 			 new Thread(()->{//backEndTimer
 				int backEndTimer=60;
 				while(true){
@@ -56,7 +56,7 @@ public class ScooterService {
 					}
 					if(Session.chosenSlot.getSlotState()==SlotState.LOCK_EMPTY) {
 						
-						GUIUtil.reconstructStation(from).switchTo(StationState.BLANK);
+						GUIUtil.reconstructStation(stationGUI).switchTo(StationState.BLANK);
 						
 						JOptionPane.showMessageDialog(null,"Pick up successful!", 
 								"Pick up successful",JOptionPane.PLAIN_MESSAGE);

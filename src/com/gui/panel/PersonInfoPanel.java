@@ -105,9 +105,9 @@ public class PersonInfoPanel extends JPanel {
 //		lbFine.setBounds(617, 115, 38, 46);
 //		this.add(lbFine);
 		
-		JLabel lbFine = new JLabel("\uFFE1 0");
+		lbFine = new JLabel("\uFFE1 0");
 		lbFine.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-		lbFine.setBounds(594, 115, 38, 46);
+		lbFine.setBounds(594, 115, 60, 46);
 		this.add(lbFine);
 	}
 }
