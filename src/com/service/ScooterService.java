@@ -31,7 +31,7 @@ public class ScooterService {
 			
 			JLabel timer=stationGUI.pReturn.labeltimer;
 			stationGUI.pReturn.labelSlotNumber.setText(Session.chosenSlot.getId());
-
+			
 			 new Thread(()->{//backEndTimer
 				int backEndTimer=60;
 				while(true){
@@ -45,6 +45,7 @@ public class ScooterService {
 					}
 					if(Session.chosenSlot.getSlotState()==SlotState.LOCK_HAS_SCOOTER) {
 						Session.currentUser.setUsingScooter(false);
+						Session.currentUser.stopTimer();
 						stationGUI.switchTo(StationState.BLANK);
 						
 						Record record=Session.currentUser.getRecords()
@@ -120,6 +121,7 @@ public class ScooterService {
 						record.setStart();// start a rent record
 						record.setStartStation(station.getName());
 						Session.currentUser.getRecords().add(record);
+						Session.currentUser.startTimer();
 						
 						JOptionPane.showMessageDialog(null,"Pick up successful!", 
 								"Pick up successful",JOptionPane.PLAIN_MESSAGE);

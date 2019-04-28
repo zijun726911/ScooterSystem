@@ -3,6 +3,10 @@ package com.entity;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import com.db.Session;
 
 public class User implements Serializable{
 	
@@ -12,6 +16,7 @@ public class User implements Serializable{
 	private String email;
 	private int unpaidFine;
 	private ArrayList<Record> records;
+	private ScooterTimerTask usingTimeout; 
 	
 	
 	public void checkOvertime() {
@@ -44,14 +49,34 @@ public class User implements Serializable{
 				return;
 			}
 		}
-		
-		
-		
 	}
+	
+	
+	public void startTimer() {
+		Timer timer = Session.userTimer;
+        timer.schedule(usingTimeout, 30*60*1000);//execute timeout after 30min 
+        
+	}
+	
+	public void stopTimer() {
+		usingTimeout.cancel();
+		usingTimeout=new ScooterTimerTask();
+	}
+	
+	class ScooterTimerTask extends TimerTask implements Serializable {   
+        
+	    @Override   
+	    public void run() {   
+	         User.this.unpaidFine=100;
+	         
+	   
+	    }   
+	}   
 	
 	
 	public User() {
 		records=new ArrayList<Record>();
+		usingTimeout=new ScooterTimerTask();
 	}
 	public ArrayList<Record> getRecords() {
 		return records;

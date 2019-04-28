@@ -56,7 +56,10 @@ public class LoadData {
 		Session.stations.add(stationA);
 		Session.stations.add(stationB);
 		Session.stations.add(stationC);
+		
+	
 		new Db().writeToFile();
+		
 	}
 	
 	
