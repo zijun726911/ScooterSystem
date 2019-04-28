@@ -1,8 +1,11 @@
 package com.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Record {
+import com.db.Db;
+
+public class Record implements Serializable {
 	public Date startTime;
 	public Date endTime;
 	public String startStation;
@@ -71,6 +74,16 @@ public class Record {
 	public void setEnd() {
 		this.endTime = new Date();
 		calculateDuration();
+		new Db().writeToFile();
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "       start time pos:"+startTime+" end:"+endTime+"\r\n"+
+			   "       start pos:"+startStation+"  end pos:"+endStation+"\r\n"+
+			   "       "+durSec+"\r\n";
+				
 	}
 
 

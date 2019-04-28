@@ -29,9 +29,9 @@ public class StationGUI extends JFrame {
 	public RentOrReturnBlank pblank;
 	public ReturnPanel pReturn;
 	public Station station;
-	//Station station;
+	
 	public StationInfoPanel pStationInfo ;
-
+	public StationState state;
 
 	
 	
@@ -40,7 +40,7 @@ public class StationGUI extends JFrame {
 	public StationGUI(String stationName) throws IOException {
 		
 		
-		
+		this.state=StationState.BLANK;
 		station=Session.getStationByStationName(stationName);
 		this.setBounds(0, 0, 964, 265);
 		
@@ -84,9 +84,12 @@ public class StationGUI extends JFrame {
 		pPersonInfo.setLayout(null);
 		pPersonInfo.btnRentOrReturn.addActionListener((e)->{
 			String userId=pPersonInfo.jtfinputId.getText();
+			if(state==StationState.BLANK) {
+				new ScooterService()
+				.rentOrReturn(userId, station,StationGUI.this);
+			}
 			
-			new ScooterService().rentOrReturn(userId, station,StationGUI.this);
-		
+			
 			
 		});
 		
@@ -105,7 +108,7 @@ public class StationGUI extends JFrame {
 	
 	
 	public void switchTo(StationState state) {
-		
+		this.state=state;
 		contentPane.remove(pStationInfo);
 		pStationInfo = new StationInfoPanel(station);
 		pStationInfo.setBounds(0, 0, 964, 265);

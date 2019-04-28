@@ -8,13 +8,14 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.entity.Slot;
+import com.entity.Record;
 import com.entity.Station;
 import com.entity.User;
 
 public class Db implements Serializable {
 	public ArrayList<User> users;
 	public ArrayList<Station> stations;
+	
 	
 	
 	public static void readFromFile() {
@@ -35,10 +36,11 @@ public class Db implements Serializable {
 		 
 	}
 	
-	public void writeToFile() {
+	public  void writeToFile() {
 		
 		this.stations=Session.stations;
 		this.users=Session.users;
+		
 		File dbfile = new File("dbfile");
         ObjectOutputStream oos;
 		try {
@@ -51,6 +53,8 @@ public class Db implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 }
 

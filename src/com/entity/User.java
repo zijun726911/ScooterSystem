@@ -10,14 +10,15 @@ public class User implements Serializable{
 	private String id;
 	private String name;
 	private String email;
-	private int unpaidFineFine;
+	private int unpaidFine;
 	private ArrayList<Record> records;
+	
 	
 	public void checkOvertime() {
 //		judge single overtiome
 		for(Record r:records) {
 			if(r.durMin>30) {
-				unpaidFineFine=100;
+				unpaidFine=100;
 				return;
 			}
 			
@@ -39,7 +40,7 @@ public class User implements Serializable{
 			}
 			
 			if(onDayAccusec>2*60*60) {
-				unpaidFineFine=100;
+				unpaidFine=100;
 				return;
 			}
 		}
@@ -90,11 +91,11 @@ public class User implements Serializable{
 	
 
 	public int getUnpaidFineFine() {
-		return unpaidFineFine;
+		return unpaidFine;
 	}
 
 	public void setUnpaidFineFine(int unpaidFineFine) {
-		this.unpaidFineFine = unpaidFineFine;
+		this.unpaidFine = unpaidFineFine;
 	}
 
 	public boolean isUsingScooter() {

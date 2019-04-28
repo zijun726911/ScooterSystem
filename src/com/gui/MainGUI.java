@@ -90,6 +90,9 @@ public class MainGUI extends JFrame {
 		btnManagementSystem = new JButton("Management System");
 		btnManagementSystem.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
 		btnManagementSystem.setBounds(224, 318, 381, 63);
+		btnManagementSystem.addActionListener((e)->{
+			new ManagementSystemGUI().setVisible(true);
+		});
 		contentPane.add(btnManagementSystem);
 	}
 	

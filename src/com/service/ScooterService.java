@@ -15,9 +15,9 @@ import com.entity.StationState;
 import com.gui.StationGUI;
 
 public class ScooterService {
+	
 	public void rentOrReturn(String userId,Station station,StationGUI stationGUI) {
-		
-		
+			
 		
 		Session.currentUser=Session.getUserById(userId);
 		if(Session.currentUser==null) {
@@ -117,7 +117,7 @@ public class ScooterService {
 						
 						
 						Record record=new Record();
-						record.setStart();// start rent record
+						record.setStart();// start a rent record
 						record.setStartStation(station.getName());
 						Session.currentUser.getRecords().add(record);
 						

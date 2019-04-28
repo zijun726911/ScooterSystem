@@ -2,6 +2,7 @@ package com.db;
 
 import java.util.ArrayList;
 
+import com.entity.Record;
 import com.entity.Slot;
 import com.entity.Station;
 import com.entity.User;
@@ -19,6 +20,8 @@ public class Session {
 		chosenSlot=null;
 		users=new  ArrayList<User>();
 		stations=new  ArrayList<Station>();
+	
+		
 		
 	}
 	
@@ -45,5 +48,9 @@ public class Session {
 		}
 		return null;
 	}
+	
+	
+
+
 
 }

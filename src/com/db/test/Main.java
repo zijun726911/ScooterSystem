@@ -1,4 +1,4 @@
-package com.service.test;
+package com.db.test;
 
 import java.awt.EventQueue;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import com.db.Db;
 import com.gui.MainGUI;
 
-class ScooterServoveTest {
+class Main {
 	
 	
 	
