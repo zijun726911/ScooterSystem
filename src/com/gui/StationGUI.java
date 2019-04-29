@@ -82,7 +82,7 @@ public class StationGUI extends JFrame {
 		pPersonInfo.setBounds(0, 265, 964, 188);
 		contentPane.add(pPersonInfo);
 		pPersonInfo.setLayout(null);
-		pPersonInfo.btnRentOrReturn.addActionListener((e)->{
+		pPersonInfo.simulSwipCard.addActionListener((e)->{
 			String userId=pPersonInfo.jtfinputId.getText();
 			if(state==StationState.BLANK) {
 				new ScooterService()

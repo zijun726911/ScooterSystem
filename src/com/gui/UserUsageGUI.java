@@ -63,7 +63,7 @@ public class UserUsageGUI extends JFrame {
         .getColumn(btColIndex)
         .setCellRenderer(new MyButtonRender());  
         
-//        this.table.setRowSelectionAllowed(false);
+        this.table.setRowSelectionAllowed(false);
 	}
 	
 	

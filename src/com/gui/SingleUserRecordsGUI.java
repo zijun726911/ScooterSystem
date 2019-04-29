@@ -28,9 +28,9 @@ public class SingleUserRecordsGUI extends JFrame {
 	private JScrollPane scroll;
 	private JLabel label;
 	private JLabel label_1;
-	private JLabel label_2;
+	private JLabel lbID;
 	private JLabel label_3;
-	private JLabel label_4;
+	private JLabel lbName;
 	User user;
 	
 
@@ -62,7 +62,7 @@ public class SingleUserRecordsGUI extends JFrame {
         
         label = new JLabel("Scooter Usage Record");
         label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 30));
-        label.setBounds(250, 5, 343, 59);
+        label.setBounds(301, 0, 343, 59);
         contentPane.add(label);
         
         label_1 = new JLabel("user id:");
@@ -70,20 +70,20 @@ public class SingleUserRecordsGUI extends JFrame {
         label_1.setBounds(153, 56, 126, 43);
         contentPane.add(label_1);
         
-        label_2 = new JLabel("Bob");
-        label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-        label_2.setBounds(260, 56, 69, 43);
-        contentPane.add(label_2);
+        lbID = new JLabel(user.getId());
+        lbID.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+        lbID.setBounds(250, 56, 100, 43);
+        contentPane.add(lbID);
         
         label_3 = new JLabel("user name:");
         label_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-        label_3.setBounds(443, 56, 126, 43);
+        label_3.setBounds(536, 56, 126, 43);
         contentPane.add(label_3);
         
-        label_4 = new JLabel("123");
-        label_4.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
-        label_4.setBounds(584, 42, 126, 71);
-        contentPane.add(label_4);
+        lbName = new JLabel(user.getName());
+        lbName.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+        lbName.setBounds(659, 42, 126, 71);
+        contentPane.add(lbName);
 	}
 	
 	
@@ -102,9 +102,16 @@ public class SingleUserRecordsGUI extends JFrame {
 				
 		        data[i][0]=format.format(record.getStartTime());
 				data[i][1]=record.startStation;
-				data[i][2]=format.format(record.getEndTime());
-				data[i][3]=record.endStation;
-				data[i][4]=record.durMin;
+				if(record.endStation!=null) {
+					data[i][2]=format.format(record.getEndTime());
+					data[i][3]=record.endStation;
+					data[i][4]=record.durMin;
+				}
+				else {
+					data[i][2]="";
+					data[i][3]="";
+					data[i][4]="";
+				}
 				
 				
 			}

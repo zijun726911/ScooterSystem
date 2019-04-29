@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.entity.Record;
 import com.entity.Station;
 import com.entity.User;
 
@@ -18,9 +17,16 @@ public class Db implements Serializable {
 	
 	
 	
+	
 	public static void readFromFile() {
-		
-		File file = new File("dbfile");
+		String path=null;
+		try {
+			path=Class.forName("Main").getResource("Main.class").getFile();
+		} catch (ClassNotFoundException e1) {
+			
+			e1.printStackTrace();
+		} 
+		File file = new File("dbfile.dat");
 		Db dbRead = null;
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
@@ -31,6 +37,8 @@ public class Db implements Serializable {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		System.out.println(file.exists());
+		System.out.println(file.getAbsolutePath());
 		Session.stations=dbRead.stations;
 		Session.users=dbRead.users;
 		 
@@ -41,10 +49,17 @@ public class Db implements Serializable {
 		this.stations=Session.stations;
 		this.users=Session.users;
 		
-		File dbfile = new File("dbfile");
+		String path=null;
+		try {
+			path=Class.forName("Main").getResource("Main.class").getFile();
+		} catch (ClassNotFoundException e1) {
+			
+			e1.printStackTrace();
+		} 
+		File file = new File("dbfile.dat");
         ObjectOutputStream oos;
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(dbfile));
+			oos = new ObjectOutputStream(new FileOutputStream(file));
 			oos.writeObject(this);
 	        oos.close();
 		

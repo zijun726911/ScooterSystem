@@ -1,16 +1,17 @@
 package com.gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import com.service.StationInfoService;
 
 public class ManagementSystemGUI extends JFrame {
 
@@ -46,7 +47,7 @@ public class ManagementSystemGUI extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Management System");
 		lblNewLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 25));
-		lblNewLabel.setBounds(213, 15, 277, 55);
+		lblNewLabel.setBounds(245, 15, 277, 55);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnUserUsage = new JButton("User Usage");
@@ -63,9 +64,19 @@ public class ManagementSystemGUI extends JFrame {
 		btnStationState.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 22));
 		btnStationState.setBounds(441, 138, 174, 55);
 		btnStationState.addActionListener((e)->{
-			
+			new StationInfoService().calcuStationInfo();;
 			
 		});
 		contentPane.add(btnStationState);
+		
+		JButton btnPayFine = new JButton("User Register");
+		btnPayFine.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 22));
+		btnPayFine.setBounds(99, 284, 212, 55);
+		contentPane.add(btnPayFine);
+		
+		JButton button = new JButton("Fine Payment");
+		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 22));
+		button.setBounds(441, 284, 212, 55);
+		contentPane.add(button);
 	}
 }

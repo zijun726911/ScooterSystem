@@ -1,73 +1,141 @@
 package com.gui;
 
-import java.awt.EventQueue;
+import java.io.IOException;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.gui.utils.GUIUtil;
+import com.db.Session;
+import com.entity.SlotState;
+import com.entity.StationState;
+import com.entity.User;
+import com.gui.panel.PayFinePanel;
+import com.gui.panel.PersonInfoPanel;
+import com.gui.panel.ReturnPanel;
+import com.gui.panel.StationInfoPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class PayFineGUI extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
+	public JTextField textField;
+	public PersonInfoPanel pPersonInfo;
+	public PayFinePanel pPayFine;
+	
+	
+	public StationInfoPanel pStationInfo ;
+	public StationState state;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PayFineGUI frame = new PayFineGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public PayFineGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+	
+	
+	
+	
+	public PayFineGUI(String stationName) throws IOException {
+		
+		
+		
+		
+		
+		
+		
+		setTitle("Station Bulletin Board");
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 831, 533);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnPay = new JButton("PAY");
-		btnPay.setBounds(58, 139, 113, 27);
-		contentPane.add(btnPay);
+		pPayFine = new PayFinePanel();
+		pPayFine.setVisible(false);
+		pPayFine.setBounds(0, 296, 813, 181);
+		contentPane.add(pPayFine);
+		pPayFine.setLayout(null);
 		
-		JButton btnCancel = new JButton("CANCEL");
-		btnCancel.setBounds(277, 139, 113, 27);
-		contentPane.add(btnCancel);
 		
-		JLabel lblYourScooterIs = new JLabel("Your Scooter is Over Time! ");
-		lblYourScooterIs.setBounds(118, 48, 229, 18);
-		contentPane.add(lblYourScooterIs);
+		pPersonInfo = new PersonInfoPanel();
+		pPersonInfo.setBounds(0, 110, 813, 188);
+		contentPane.add(pPersonInfo);
+		pPersonInfo.setLayout(null);
+		pPersonInfo.simulSwipCard.addActionListener((e)->{
+			
+			
+			
+		});
 		
-		JLabel lblPleasePayT = new JLabel("Please pay the fine! ");
-		lblPleasePayT.setBounds(157, 87, 178, 18);
-		contentPane.add(lblPleasePayT);
+		JLabel lblNewLabel = new JLabel("Fine Payment");
+		lblNewLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 35));
+		lblNewLabel.setBounds(283, 15, 249, 50);
+		contentPane.add(lblNewLabel);
 		
-		JLabel lblBackToThe = new JLabel("Back to the main page in");
-		lblBackToThe.setBounds(81, 198, 205, 18);
-		contentPane.add(lblBackToThe);
+//		
 		
-		JLabel lblSeconds = new JLabel("seconds! ");
-		lblSeconds.setBounds(335, 198, 72, 18);
-		contentPane.add(lblSeconds);
+		this.switchTo(StationState.BLANK);
 		
-		JLabel label = new JLabel("60");	
-		GUIUtil.getInstance().countDown(label, 60);
-		label.setBounds(300, 198, 32, 18);
-		contentPane.add(label);
+	}
+	
+	
+	public void switchTo(StationState state) {
+		this.state=state;
+		this.contentPane.updateUI();
+		
+		User currentUser=Session.currentUser;
+		
+		switch (state) {
+			case BLANK:
+//				pRent.setVisible(false);
+//				pReturn.setVisible(false);
+//				pblank.setVisible(true);
+				pPersonInfo.lbId.setText("");
+				pPersonInfo.lbName.setText("");
+				pPersonInfo.lbEmail.setText("");
+				pPersonInfo.jtfinputId.setText("");
+				pPersonInfo.lbFine.setText("");
+				pPersonInfo.jtfinputId.setText("");
+				break;
+				
+			case RENT:
+//				pRent.setVisible(true);
+//				pReturn.setVisible(false);
+//				pblank.setVisible(false);
+				
+				pPersonInfo.lbId.setText(currentUser.getId());
+				pPersonInfo.lbName.setText(currentUser.getName());
+				pPersonInfo.lbEmail.setText(currentUser.getEmail());
+				pPersonInfo.lbFine.setText("\uFFE1 "+currentUser.getUnpaidFineFine());
+				pPersonInfo.jtfinputId.setText(currentUser.getId());
+				break;
+				
+			case RETURN:
+//				pRent.setVisible(false);
+//				pReturn.setVisible(true);
+//				pblank.setVisible(false);
+//				
+				pPersonInfo.lbId.setText(currentUser.getId());
+				pPersonInfo.lbName.setText(currentUser.getName());
+				pPersonInfo.lbEmail.setText(currentUser.getEmail());
+				pPersonInfo.lbFine.setText("\uFFE1 "+currentUser.getUnpaidFineFine());
+				pPersonInfo.jtfinputId.setText(currentUser.getId());
+				break;
+				
+			case UNPAID:
+//				pRent.setVisible(false);
+//				pReturn.setVisible(false);
+//				pblank.setVisible(true);
+				
+				pPersonInfo.lbId.setText(currentUser.getId());
+				pPersonInfo.lbName.setText(currentUser.getName());
+				pPersonInfo.lbEmail.setText(currentUser.getEmail());
+				pPersonInfo.lbFine.setText("\uFFE1 "+currentUser.getUnpaidFineFine());
+				pPersonInfo.jtfinputId.setText(currentUser.getId());
+				break;
+		}
+			
+			
+		
+		
 	}
 }

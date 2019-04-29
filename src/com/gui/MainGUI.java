@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 
 public class MainGUI extends JFrame {
 	public JButton btnStationA;
@@ -40,7 +41,7 @@ public class MainGUI extends JFrame {
 	public MainGUI() throws IOException {
 		setTitle("Scooter System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 868, 626);
+		setBounds(100, 100, 874, 516);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,7 +58,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		btnStationA.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
-		btnStationA.setBounds(94, 128, 165, 61);
+		btnStationA.setBounds(96, 187, 165, 61);
 		
 		contentPane.add(btnStationA);
 		
@@ -71,7 +72,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		btnStationB.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
-		btnStationB.setBounds(334, 128, 165, 61);
+		btnStationB.setBounds(336, 187, 165, 61);
 		contentPane.add(btnStationB);
 		
 		btnStationC = new JButton("Station C");
@@ -84,21 +85,20 @@ public class MainGUI extends JFrame {
 			}
 		});
 		btnStationC.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
-		btnStationC.setBounds(590, 128, 165, 61);
+		btnStationC.setBounds(592, 187, 165, 61);
 		contentPane.add(btnStationC);
 		
 		btnManagementSystem = new JButton("Management System");
 		btnManagementSystem.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
-		btnManagementSystem.setBounds(224, 318, 381, 63);
+		btnManagementSystem.setBounds(220, 330, 381, 63);
 		btnManagementSystem.addActionListener((e)->{
 			new ManagementSystemGUI().setVisible(true);
 		});
 		contentPane.add(btnManagementSystem);
+		
+		JLabel lblNewLabel = new JLabel("Scooter System");
+		lblNewLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 30));
+		lblNewLabel.setBounds(283, 37, 251, 78);
+		contentPane.add(lblNewLabel);
 	}
-	
-	
-	
-	
-	
-	
 }
