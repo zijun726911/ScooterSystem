@@ -52,11 +52,19 @@ public class LoadData {
 			
 		}
 		
+		stationB.getSlots().get(0).setSlotState(SlotState.LOCK_HAS_SCOOTER);
+		stationB.getSlots().get(1).setSlotState(SlotState.LOCK_HAS_SCOOTER);
+		stationB.getSlots().get(2).setSlotState(SlotState.LOCK_HAS_SCOOTER);
+		
+		
 		
 		Session.stations.add(stationA);
 		Session.stations.add(stationB);
 		Session.stations.add(stationC);
+		
+	
 		new Db().writeToFile();
+		
 	}
 	
 	

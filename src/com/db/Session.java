@@ -1,6 +1,7 @@
 package com.db;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 import com.entity.Slot;
 import com.entity.Station;
@@ -12,6 +13,7 @@ public class Session {
 	public static Slot chosenSlot;
 	public static ArrayList<User> users;
 	public static ArrayList<Station> stations;
+	public static Timer userTimer;
 	
 	static {
 		currentStation=null;
@@ -19,6 +21,8 @@ public class Session {
 		chosenSlot=null;
 		users=new  ArrayList<User>();
 		stations=new  ArrayList<Station>();
+		userTimer=new Timer();
+		
 		
 	}
 	
@@ -45,5 +49,9 @@ public class Session {
 		}
 		return null;
 	}
+	
+	
+
+
 
 }

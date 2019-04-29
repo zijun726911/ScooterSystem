@@ -13,7 +13,7 @@ import com.db.Session;
 import com.gui.utils.GUIUtil;
 
 public class PersonInfoPanel extends JPanel {
-	public JButton btnRentOrReturn;
+	public JButton simulSwipCard;
 	public JTextField jtfinputId;
 	public JLabel lbId;
 	public JLabel lbName;
@@ -42,11 +42,11 @@ public class PersonInfoPanel extends JPanel {
 		jtfinputId.setColumns(10);
 		this.add(jtfinputId);
 		
-		btnRentOrReturn = new JButton("<html>simulate to swipe<br /> your card</html>");
-		btnRentOrReturn.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
-		btnRentOrReturn.setBounds(121, 105, 189, 70);
+		simulSwipCard = new JButton("<html>simulate to swipe<br /> your card</html>");
+		simulSwipCard.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
+		simulSwipCard.setBounds(121, 105, 189, 70);
 		
-		this.add(btnRentOrReturn);
+		this.add(simulSwipCard);
 		
 		JLabel lblId = new JLabel("Id:");
 		lblId.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));

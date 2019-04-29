@@ -15,29 +15,47 @@ import com.entity.StationState;
 import com.gui.StationGUI;
 
 public class ScooterService {
+	
 	public void rentOrReturn(String userId,Station station,StationGUI stationGUI) {
+		if(userId.trim().equals("")) {
+			
+			return;
+		}
+		Session.chosenSlot=findANonEmptySlot(station);
+		
 		
 		
 		
 		Session.currentUser=Session.getUserById(userId);
-		if(Session.currentUser==null) {
-			//未注册
+		if(Session.currentUser==null) {//未注册
+			JOptionPane.showMessageDialog(null,"Please register Scooter system first!", 
+					"Not yet register",JOptionPane.WARNING_MESSAGE);
+		 
+			stationGUI.switchTo(StationState.BLANK);
+			return;
 		}
-		else if(Session.currentUser.isUsingScooter()){
-			//该用户要还车
+		else if(Session.currentUser.isUsingScooter()){//该用户要还车
+			
+			if(isAllSlotFull(station)) {
+				JOptionPane.showMessageDialog(null,"All slots  are full, please return to other station!", 
+						"Slots Full",JOptionPane.WARNING_MESSAGE);
+			 
+				stationGUI.switchTo(StationState.BLANK);
+				return;
+			}
+			
 			Session.chosenSlot=findEmptySlot(station);
 			Session.chosenSlot.setSlotState(SlotState.RELEASED_EMPTY);
 			stationGUI.switchTo(StationState.RETURN);
 			
 			JLabel timer=stationGUI.pReturn.labeltimer;
 			stationGUI.pReturn.labelSlotNumber.setText(Session.chosenSlot.getId());
-
+			
 			 new Thread(()->{//backEndTimer
 				int backEndTimer=60;
 				while(true){
 					try {
 						timer.setText(""+backEndTimer);
-						
 						backEndTimer--;
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
@@ -45,6 +63,7 @@ public class ScooterService {
 					}
 					if(Session.chosenSlot.getSlotState()==SlotState.LOCK_HAS_SCOOTER) {
 						Session.currentUser.setUsingScooter(false);
+						Session.currentUser.stopTimer();
 						stationGUI.switchTo(StationState.BLANK);
 						
 						Record record=Session.currentUser.getRecords()
@@ -70,79 +89,94 @@ public class ScooterService {
 			}).start();
 			
 		}
-		else {
+		else {//该用户要借车
 			
-			//该用户要借车
+			if(Session.chosenSlot==null) {//all slot empty,can't rent scooter
+				JOptionPane.showMessageDialog(null,"There are no available scooters in this station, please rent from other station!", 
+						"No scooters available",JOptionPane.WARNING_MESSAGE);
+			 
+				stationGUI.switchTo(StationState.BLANK);
+				return;
+			}
+			
+			
 			if(Session.currentUser.getUnpaidFineFine()>0) {
 				//有未缴罚款无法借车
 				stationGUI.switchTo(StationState.UNPAID);
 				JOptionPane.showMessageDialog(null,"you have unpaid fine, please pay the fine before borrow the scooter!", 
 						"Having unpaid fine",JOptionPane.WARNING_MESSAGE);
-				new Thread(()->{
-					try {
-						Thread.sleep(3000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					stationGUI.switchTo(StationState.BLANK);
-				
-				}).start();
+				stationGUI.switchTo(StationState.BLANK);
 				return; 
 				
 			}
 			
-			//可以借车
-			 Session.chosenSlot=findNonEmptySlot(station);
-			 Session.chosenSlot.setSlotState(SlotState.RELEASED_NOT_PICKUP);
-			 stationGUI.switchTo(StationState.RENT);
+			//该用户可以借车
 			 
-			 JLabel timer=stationGUI.pRent.labeltimer;
-			 stationGUI.pRent.labelSlotNumber.setText(Session.chosenSlot.getId());
 
-			 new Thread(()->{//backEndTimer
-				int backEndTimer=60;
-				while(true){
-					try {
-						timer.setText(""+backEndTimer);
-						
-						backEndTimer--;
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					if(Session.chosenSlot.getSlotState()==SlotState.LOCK_EMPTY) {
-						Session.currentUser.setUsingScooter(true);
-						stationGUI.switchTo(StationState.BLANK);	
-						
-						
-						Record record=new Record();
-						record.setStart();// start rent record
-						record.setStartStation(station.getName());
-						Session.currentUser.getRecords().add(record);
-						
-						JOptionPane.showMessageDialog(null,"Pick up successful!", 
-								"Pick up successful",JOptionPane.PLAIN_MESSAGE);
-						
-						
-					
-						
-						break;
-					}
-					if(backEndTimer<=0) {
-						JOptionPane.showMessageDialog(null,"Fail to pick up the scooter!", 
-								"Fail to pick up the scooter",JOptionPane.WARNING_MESSAGE);
-						stationGUI.switchTo(StationState.BLANK);
-						break;
-					}
-				}	
-			}).start();
+				 Session.chosenSlot.setSlotState(SlotState.RELEASED_NOT_PICKUP);
+				 stationGUI.switchTo(StationState.RENT);
+				 
+				 JLabel timer=stationGUI.pRent.labeltimer;
+				 stationGUI.pRent.labelSlotNumber.setText(Session.chosenSlot.getId());
+
+				 new Thread(()->{//backEndTimer
+					int backEndTimer=60;
+					while(true){
+						try {
+							timer.setText(""+backEndTimer);
+							
+							backEndTimer--;
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						if(Session.chosenSlot.getSlotState()==SlotState.LOCK_EMPTY) {
+							Session.currentUser.setUsingScooter(true);
+							stationGUI.switchTo(StationState.BLANK);	
+							
+							
+							Record record=new Record();
+							record.setStart();// start a rent record
+							record.setStartStation(station.getName());
+							Session.currentUser.getRecords().add(record);
+							Session.currentUser.startTimer();
+							
+							JOptionPane.showMessageDialog(null,"Pick up successful!", 
+									"Pick up successful",JOptionPane.PLAIN_MESSAGE);
+							
+
+							
+							break;
+						}
+						if(backEndTimer<=0) {
+							
+							Session.chosenSlot.setSlotState(SlotState.LOCK_HAS_SCOOTER);
+							stationGUI.switchTo(StationState.BLANK);
+							JOptionPane.showMessageDialog(null,"Fail to pick up the scooter!", 
+									"Fail to pick up the scooter",JOptionPane.WARNING_MESSAGE);
+							break;
+						}
+					}	
+				}).start();
+
+			 
+			
 		}
 	}
 			
+	public boolean isAllSlotFull(Station station){
+		ArrayList<Slot> slots=station.getSlots();
+		for(Slot slot:slots) {
+			if(slot.getSlotState()==SlotState.LOCK_EMPTY) {
+				return false;
+			}
+		}
+		
+		return true;	
+		
+	}
 	
-	
-	public  Slot findNonEmptySlot(Station station) {
+	public  Slot findANonEmptySlot(Station station) {
 		ArrayList<Slot> slots=station.getSlots();
 		for(Slot slot:slots) {//借车时，释放一个slot
 			if(slot.getSlotState()==SlotState.LOCK_HAS_SCOOTER) {

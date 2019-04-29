@@ -1,19 +1,22 @@
-package com.service.test;
 
-import java.awt.EventQueue;
+
 import java.io.IOException;
 
 import com.db.Db;
 import com.gui.MainGUI;
 
-class ScooterServoveTest {
+class Main {
 	
 	
 	
 	public static void main(String[] args) throws IOException {
 		Db.readFromFile();
-		MainGUI frame =new MainGUI();
-		frame.setVisible(true);
+		new MainGUI().setVisible(true);
+		
+		
+		
+		
+//        System.out.println(Main.class.getResource("Main.class").getFile()); 
 		
 	
 	}
