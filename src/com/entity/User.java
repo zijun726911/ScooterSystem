@@ -19,37 +19,7 @@ public class User implements Serializable{
 	private ScooterTimerTask usingTimeout; 
 	
 	
-	public void checkOvertime() {
-//		judge single overtiome
-		for(Record r:records) {
-			if(r.durMin>30) {
-				unpaidFine=100;
-				return;
-			}
-			
-		}
-		
-		
-		//judge accumulated overtime
-		
-		ArrayList<Record> recordsClone= (ArrayList<Record>)records.clone();
-		for(int i=0;i< recordsClone.size();i++) {
-			long onDayAccusec=recordsClone.get(i).durSec;
-			for(int j=i+1;j< recordsClone.size();j++) {
-				SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-				if( fmt.format(recordsClone.get(i).getEndTime())//two record in the same time
-						.equals(fmt.format(recordsClone.get(j).getEndTime()))){
-					onDayAccusec+=recordsClone.get(j).durSec;
-					recordsClone.remove(j);
-				}	
-			}
-			
-			if(onDayAccusec>2*60*60) {
-				unpaidFine=100;
-				return;
-			}
-		}
-	}
+	
 	
 	
 	public void startTimer() {

@@ -46,7 +46,7 @@ public class RegisterGUI extends JFrame {
 	public RegisterGUI() {
 		setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
 		setTitle("Enrolment");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 651, 493);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,17 +64,19 @@ public class RegisterGUI extends JFrame {
 		lblPassword.setBounds(75, 189, 146, 53);
 		contentPane.add(lblPassword);
 		
-		JLabel lblRegister = new JLabel("Enrolment");
+		JLabel lblRegister = new JLabel("Enrollment");
 		lblRegister.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 33));
 		lblRegister.setBounds(205, 15, 231, 53);
 		contentPane.add(lblRegister);
 		
 		tfUsername = new JTextField();
+		tfUsername.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
 		tfUsername.setBounds(233, 151, 245, 35);
 		contentPane.add(tfUsername);
 		tfUsername.setColumns(10);
 		
 		tfEmail = new JTextField();
+		tfEmail.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
 		tfEmail.setColumns(10);
 		tfEmail.setBounds(233, 202, 245, 35);
 		contentPane.add(tfEmail);
@@ -90,7 +92,7 @@ public class RegisterGUI extends JFrame {
 				
 				String name=tfUsername.getText();
 				String email=tfEmail.getText();
-				new UserService().register(id,name,email) ;
+				new UserService().register(id,name,email,RegisterGUI.this) ;
 				
 			}
 		});
@@ -98,6 +100,11 @@ public class RegisterGUI extends JFrame {
 		contentPane.add(btnResister);
 		
 		JButton btnCancel = new JButton("cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegisterGUI.this.setVisible(false);
+			}
+		});
 		btnCancel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 28));
 		btnCancel.setBounds(334, 303, 132, 53);
 		contentPane.add(btnCancel);
@@ -108,6 +115,7 @@ public class RegisterGUI extends JFrame {
 		contentPane.add(lblAccountId);
 		
 		tfId = new JTextField();
+		tfId.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
 		tfId.setColumns(10);
 		tfId.setBounds(233, 96, 245, 35);
 		contentPane.add(tfId);

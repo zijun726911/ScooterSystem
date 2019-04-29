@@ -20,9 +20,6 @@ public class PayFinePanel extends JPanel{
 	public PayFinePanel() {
 		// TODO Auto-generated constructor stub
 		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(0, 0, 979, 17);
-		this.add(separator_1);
 		
 		
 		

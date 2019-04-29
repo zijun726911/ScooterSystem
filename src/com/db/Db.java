@@ -37,8 +37,7 @@ public class Db implements Serializable {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		System.out.println(file.exists());
-		System.out.println(file.getAbsolutePath());
+		
 		Session.stations=dbRead.stations;
 		Session.users=dbRead.users;
 		 

@@ -19,7 +19,7 @@ import com.entity.User;
 import com.gui.panel.MyButtonEditor;
 import com.gui.panel.MyButtonRender;
 
-public class UserUsageGUI extends JFrame {
+public class UserInfoGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -31,8 +31,9 @@ public class UserUsageGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserUsageGUI() {
+	public UserInfoGUI() {
 		super("Personal Usage");
+		setTitle("User Information");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1007, 647);
 		contentPane = new JPanel();
@@ -47,11 +48,11 @@ public class UserUsageGUI extends JFrame {
         scroll.setLocation(27, 128);
         
         contentPane.add(scroll);
-        scroll.setSize(923, 407);
+        scroll.setSize(923, 300);
         
-        lblNewLabel = new JLabel("User Usage");
+        lblNewLabel = new JLabel("User Information");
         lblNewLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 30));
-        lblNewLabel.setBounds(374, 15, 211, 50);
+        lblNewLabel.setBounds(331, 28, 274, 50);
         contentPane.add(lblNewLabel);
         table.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
         this.table.getColumnModel().getColumn(2).setPreferredWidth(200);
@@ -63,7 +64,7 @@ public class UserUsageGUI extends JFrame {
         .getColumn(btColIndex)
         .setCellRenderer(new MyButtonRender());  
         
-        this.table.setRowSelectionAllowed(false);
+//        this.table.setRowSelectionAllowed(false);
 	}
 	
 	

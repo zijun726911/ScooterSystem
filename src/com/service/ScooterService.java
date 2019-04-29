@@ -1,7 +1,6 @@
 package com.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -44,6 +43,7 @@ public class ScooterService {
 				return;
 			}
 			
+			//正常还车
 			Session.chosenSlot=findEmptySlot(station);
 			Session.chosenSlot.setSlotState(SlotState.RELEASED_EMPTY);
 			stationGUI.switchTo(StationState.RETURN);
@@ -70,8 +70,8 @@ public class ScooterService {
 								.get(Session.currentUser.getRecords().size()-1);
 						record.setEndStation(station.getName());
 						record.setEnd();
-//						System.out.println(Session.users
-//								.get(0).getRecords().get(0).durSec);
+						UserService.checkTodayAccumOvertime(Session.currentUser,record.endTime);
+
 						
 						JOptionPane.showMessageDialog(null,"Return successful!", 
 								"Return successful",JOptionPane.PLAIN_MESSAGE);

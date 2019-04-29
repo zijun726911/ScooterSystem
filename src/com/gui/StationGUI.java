@@ -126,7 +126,6 @@ public class StationGUI extends JFrame {
 				pPersonInfo.lbId.setText("");
 				pPersonInfo.lbName.setText("");
 				pPersonInfo.lbEmail.setText("");
-				pPersonInfo.jtfinputId.setText("");
 				pPersonInfo.lbFine.setText("");
 				pPersonInfo.jtfinputId.setText("");
 				break;
