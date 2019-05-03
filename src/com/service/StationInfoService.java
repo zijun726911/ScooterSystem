@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import com.db.Session;
-import com.entity.OneStationInfo;
 import com.entity.Record;
 import com.entity.Slot;
-import com.entity.SlotState;
 import com.entity.Station;
-import com.entity.StationInfoModel;
 import com.entity.User;
 import com.gui.StationQueryGUI;
+import com.model.OneStationInfo;
+import com.model.SlotState;
+import com.model.StationInfoModel;
 
 public class StationInfoService {
 	public void calcuStationInfo() {

@@ -7,11 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-import com.db.Db;
-import com.db.Session;
-import com.entity.SlotState;
-import com.entity.Station;
-import com.gui.utils.GUIUtil;
+
+
 
 public class RentPanel extends JPanel{
 	

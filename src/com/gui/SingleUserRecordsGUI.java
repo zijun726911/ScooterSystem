@@ -15,6 +15,7 @@ import javax.swing.table.AbstractTableModel;
 import com.db.Session;
 import com.entity.Record;
 import com.entity.User;
+import com.utils.TimeUtil;
 
 import javax.swing.JTable;
 import javax.swing.JLabel;
@@ -91,13 +92,13 @@ public class SingleUserRecordsGUI extends JFrame {
 		Object[][] data=new Object[user.getRecords().size()][8];
 		 String[] columnNames =  
 		        { "Start Time", "Start Position",
-		        		"End Time", "End Position", "duration (min)"};  
+		        		"End Time", "End Position", "duration"};  
 		
 		public RecordTableModel(User user) {
 			// TODO Auto-generated constructor stub
 			ArrayList<Record> records=user.getRecords();
 			for(int i=0;i<records.size();i++) {
-				Record record=records.get(i);
+				Record record=records.get(records.size()-1-i);
 		        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				
 		        data[i][0]=format.format(record.getStartTime());
@@ -105,7 +106,7 @@ public class SingleUserRecordsGUI extends JFrame {
 				if(record.endStation!=null) {
 					data[i][2]=format.format(record.getEndTime());
 					data[i][3]=record.endStation;
-					data[i][4]=record.durMin;
+					data[i][4]=TimeUtil.secToTime((int)record.durSec);
 				}
 				else {
 					data[i][2]="";

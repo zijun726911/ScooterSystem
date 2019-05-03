@@ -12,8 +12,8 @@ import javax.swing.SwingConstants;
 
 import com.db.Session;
 import com.entity.Station;
-import com.entity.StationInfoModel;
-import com.entity.OneStationInfo;
+import com.model.OneStationInfo;
+import com.model.StationInfoModel;
 
 public class StationQueryGUI extends JFrame {
 

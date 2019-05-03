@@ -3,6 +3,7 @@ package com.entity;
 import java.io.Serializable;
 
 import com.db.Db;
+import com.model.SlotState;
 
 public class Slot implements Serializable {
 

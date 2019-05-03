@@ -8,10 +8,10 @@ import javax.swing.JOptionPane;
 import com.db.Session;
 import com.entity.Record;
 import com.entity.Slot;
-import com.entity.SlotState;
 import com.entity.Station;
-import com.entity.StationState;
 import com.gui.StationGUI;
+import com.model.SlotState;
+import com.model.StationState;
 
 public class ScooterService {
 	
@@ -20,6 +20,9 @@ public class ScooterService {
 			
 			return;
 		}
+		
+		
+		
 		Session.chosenSlot=findANonEmptySlot(station);
 		
 		
@@ -70,7 +73,7 @@ public class ScooterService {
 								.get(Session.currentUser.getRecords().size()-1);
 						record.setEndStation(station.getName());
 						record.setEnd();
-						UserService.checkTodayAccumOvertime(Session.currentUser,record.endTime);
+						UserService.getOneDayAccuTime(Session.currentUser,record.endTime);
 
 						
 						JOptionPane.showMessageDialog(null,"Return successful!", 
@@ -112,7 +115,6 @@ public class ScooterService {
 			
 			//该用户可以借车
 			 
-
 				 Session.chosenSlot.setSlotState(SlotState.RELEASED_NOT_PICKUP);
 				 stationGUI.switchTo(StationState.RENT);
 				 

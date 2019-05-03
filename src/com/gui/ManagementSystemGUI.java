@@ -41,7 +41,7 @@ public class ManagementSystemGUI extends JFrame {
 		JButton btnUserUsage = new JButton("User Information");
 		btnUserUsage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new UserInfoGUI().setVisible(true);
+				new UserInfoQueryGUI().setVisible(true);
 			}
 		});
 		btnUserUsage.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 22));

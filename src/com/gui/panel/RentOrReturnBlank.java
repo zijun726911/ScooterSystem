@@ -9,9 +9,9 @@ import javax.swing.JSeparator;
 
 import com.db.Db;
 import com.db.Session;
-import com.entity.SlotState;
 import com.entity.Station;
-import com.gui.utils.GUIUtil;
+import com.model.SlotState;
+
 
 public class RentOrReturnBlank extends JPanel{
 	

@@ -6,13 +6,12 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
-public class MyButtonRender implements TableCellRenderer
+public class ShowButtonRender implements TableCellRenderer
 {
-    private JPanel panel;
 
     private JButton button;
 
-    public MyButtonRender()
+    public ShowButtonRender()
     {
         this.initButton();
 
@@ -26,18 +25,6 @@ public class MyButtonRender implements TableCellRenderer
     {
         this.button = new JButton("show");
 
-        // 设置按钮的大小及位置。
-//        this.button.setBounds(0, 0, 50, 15);
-
-        // 在渲染器里边添加按钮的事件是不会触发的
-        // this.button.addActionListener(new ActionListener()
-        // {
-        //
-        // public void actionPerformed(ActionEvent e)
-        // {
-        // // TODO Auto-generated method stub
-        // }
-        // });
 
     }
 

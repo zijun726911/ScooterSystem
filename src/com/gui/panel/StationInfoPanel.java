@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.entity.Slot;
-import com.entity.SlotState;
 import com.entity.Station;
+import com.model.SlotState;
 
 public class StationInfoPanel extends JPanel {
 	Station station;

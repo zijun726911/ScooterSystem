@@ -12,11 +12,11 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.db.Session;
-import com.entity.PayFineState;
 import com.entity.User;
 import com.gui.panel.PayFinePanel;
 import com.gui.panel.PersonInfoPanel;
 import com.gui.panel.StationInfoPanel;
+import com.model.PayFineState;
 import com.service.UserService;
 import javax.swing.JSeparator;
 

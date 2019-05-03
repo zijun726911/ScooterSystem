@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.db.Session;
-import com.gui.utils.GUIUtil;
 
 public class PersonInfoPanel extends JPanel {
 	public JButton simulSwipCard;

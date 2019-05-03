@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.entity.Slot;
-import com.entity.SlotState;
 import com.gui.LightGUI;
-import com.gui.utils.GUIUtil;
+import com.model.SlotState;
+
 
 public class SingleSlotJPanel extends JPanel {
 	public LightGUI lbLight;

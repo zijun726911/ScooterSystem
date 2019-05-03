@@ -9,15 +9,15 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.db.Session;
-import com.entity.SlotState;
 import com.entity.Station;
-import com.entity.StationState;
 import com.entity.User;
 import com.gui.panel.PersonInfoPanel;
 import com.gui.panel.RentOrReturnBlank;
 import com.gui.panel.RentPanel;
 import com.gui.panel.ReturnPanel;
 import com.gui.panel.StationInfoPanel;
+import com.model.SlotState;
+import com.model.StationState;
 import com.service.ScooterService;
 
 public class StationGUI extends JFrame {

@@ -1,4 +1,4 @@
-package com.entity;
+package com.model;
 
 public class OneStationInfo{
 	

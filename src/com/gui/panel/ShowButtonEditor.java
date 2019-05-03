@@ -12,20 +12,17 @@ import javax.swing.JTextField;
 import com.entity.User;
 import com.gui.SingleUserRecordsGUI;
 
-public class MyButtonEditor extends DefaultCellEditor  
+public class ShowButtonEditor extends DefaultCellEditor  
 {  
   
-    /** 
-     * serialVersionUID 
-     */  
-    private static final long serialVersionUID = -6546334664166791132L;  
+
   
-    private JPanel panel;  
+    
   
     private JButton button;
     
   
-    public MyButtonEditor()  
+    public ShowButtonEditor()  
     {  
         // DefautlCellEditor有此构造器，需要传入一个，但这个不会使用到，直接new一个即可。   
         super(new JTextField()); 
@@ -54,7 +51,7 @@ public class MyButtonEditor extends DefaultCellEditor
             public void actionPerformed(ActionEvent e)  
             {  
                 // 触发取消编辑的事件，不会调用tableModel的setValue方法。   
-                MyButtonEditor.this.fireEditingCanceled();  
+                ShowButtonEditor.this.fireEditingCanceled();  
 
                 // 这里可以做其它操作。   
                 // 可以将table传入，通过getSelectedRow,getSelectColumn方法获取到当前选择的行和列及其它操作等。   
@@ -74,7 +71,7 @@ public class MyButtonEditor extends DefaultCellEditor
     {  
         // 只为按钮赋值即可。也可以作其它操作。 
 //    	System.out.println("row: "+row);
-    	new SingleUserRecordsGUI(row).setVisible(true);;
+    	new SingleUserRecordsGUI(row).setVisible(true);
         this.button.setText(value == null ? "" : "show");  
         
         return this.button;  

@@ -3,9 +3,9 @@ package com.db.test;
 import com.db.Db;
 import com.db.Session;
 import com.entity.Slot;
-import com.entity.SlotState;
 import com.entity.Station;
 import com.entity.User;
+import com.model.SlotState;
 
 public class LoadData {
 	public static void main(String[] args) {
