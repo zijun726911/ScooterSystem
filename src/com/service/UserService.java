@@ -34,6 +34,7 @@ public class UserService {
 		JOptionPane.showMessageDialog(null,"Registeration successful!", 
 				"Registeration successful",JOptionPane.WARNING_MESSAGE);
 		registerGUI.setVisible(false);
+		new Db().writeToFile();
 	}
 	
 	public void delete(int index) {
