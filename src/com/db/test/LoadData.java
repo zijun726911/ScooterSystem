@@ -12,7 +12,7 @@ public class LoadData {
 		
 		
 		User u=new User();
-		u.setId("123");06
+		u.setId("123");
 		u.setName("Bob");
 		u.setEmail("bob@gmail.com");
 		u.setUsingScooter(false);
