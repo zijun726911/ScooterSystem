@@ -125,11 +125,10 @@ public class UserService {
 	
 	public static long getTotalAccuTime(User user) {
 		long totalAccuSec=0;
-		ArrayList<Record> records= (ArrayList<Record>)user
-				.getRecords().clone();
-		Date today=records.get(records.size()-1).endTime;
+		ArrayList<Record> records= user.getRecords();
+//		Date today=records.get(records.size()-1).endTime;
 		
-		for(int i=0;i<records.size()-1;i++) {
+		for(int i=0;i<records.size();i++) {
 			Record record=records.get(i);
 			
 			
