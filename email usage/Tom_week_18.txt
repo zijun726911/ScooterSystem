@@ -1,9 +1,0 @@
-Dear  Tom, information below is your last week scooter usage:
-
-+--------------+------------------+------------+----------------+------------+
-|  Start Time  |  Start Position  |  End Time  |  End Position  |  duration  |
-+--------------+------------------+------------+----------------+------------+
-+--------------+------------------+------------+----------------+------------+
-
-Unpaid fine: ¡ê100
-This week total usage: 00:00:00

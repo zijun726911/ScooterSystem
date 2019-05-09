@@ -22,8 +22,15 @@ import com.utils.ConsoleTable;
 import com.utils.TimeUtil;
 
 public class UserService {
-	public void register(String id,String name,String email,RegisterGUI registerGUI ) {
+	public User register(String id,String name,String email,RegisterGUI registerGUI ) {
 		
+		User existedUser=Session.getUserById(id);
+		System.out.println("existedUser:"+existedUser);
+		if(existedUser!=null) {
+			JOptionPane.showMessageDialog(null,"This ID already exists, so it cannot be registered!", 
+					"ID Unavailable",JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
 		User u=new User();
 		u.setId(id);
 		u.setName(name);
@@ -32,13 +39,19 @@ public class UserService {
 		u.setUnpaidFineFine(0);
 		Session.users.add(u);
 		JOptionPane.showMessageDialog(null,"Registeration successful!", 
-				"Registeration successful",JOptionPane.WARNING_MESSAGE);
+				"Registeration successful",JOptionPane.PLAIN_MESSAGE);
 		registerGUI.setVisible(false);
+		new Db().writeToFile();
+		return u;
+	}
+	
+	public void deleteUser(int index) {
+		Session.users.remove(index);
 		new Db().writeToFile();
 	}
 	
-	public void delete(int index) {
-		Session.users.remove(index);
+	public void deleteUser(User u) {
+		Session.users.remove(u);
 		new Db().writeToFile();
 	}
 	
@@ -170,7 +183,7 @@ public class UserService {
 		BufferedWriter bw=new BufferedWriter(
         		new FileWriter(path+fileName));
 		StringBuilder text=new StringBuilder();
-		bw.write("Dear  "+user.getName()+", information "
+		bw.write("Dear  "+user.getName()+", your id is "+user.getId()+". information "
 				+ "below is your last week scooter usage:\r\n\r\n");
 		
 		

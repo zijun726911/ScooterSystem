@@ -12,13 +12,15 @@ class Main {
 	
 	public static void main(String[] args) throws IOException {
 		Db.readFromFile();
+		
 		new UserService().periodicallySendEmail();
+		
 		new MainGUI().setVisible(true);
 		
 		
 		
 		
-//        System.out.println(Main.class.getResource("Main.class").getFile()); 
+		
 		
 	
 	}

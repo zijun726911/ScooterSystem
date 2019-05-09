@@ -16,11 +16,11 @@ import com.model.StationState;
 public class ScooterService {
 	
 	public void rentOrReturn(String userId,Station station,StationGUI stationGUI) {
+		
 		if(userId.trim().equals("")) {
 			
 			return;
 		}
-		
 		
 		
 		Session.chosenSlot=findANonEmptySlot(station);
@@ -164,6 +164,10 @@ public class ScooterService {
 			 
 			
 		}
+		for(StackTraceElement s: Thread.currentThread().getStackTrace()){
+            System.out.println("-------"+s.getMethodName()+" : "+s);
+        }
+		
 	}
 			
 	public boolean isAllSlotFull(Station station){

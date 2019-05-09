@@ -80,7 +80,7 @@ public class DelButtonEditor extends DefaultCellEditor
         	
         	
         	((UserTableModel)table.getModel()).delete(row);
-        	new UserService().delete(row);
+        	new UserService().deleteUser(row);
 //			table.validate();
 //			table.updateUI();
         	
