@@ -164,9 +164,7 @@ public class ScooterService {
 			 
 			
 		}
-		for(StackTraceElement s: Thread.currentThread().getStackTrace()){
-            System.out.println("-------"+s.getMethodName()+" : "+s);
-        }
+	
 		
 	}
 			

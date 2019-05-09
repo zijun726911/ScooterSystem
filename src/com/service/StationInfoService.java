@@ -1,5 +1,6 @@
 package com.service;
 
+import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -14,7 +15,9 @@ import com.model.SlotState;
 import com.model.StationInfoModel;
 
 public class StationInfoService {
-	public void calcuStationInfo() {
+	public static boolean first=true;
+	
+	public StationQueryGUI calcuStationInfo(Rectangle bounds) {
 		
 		StationInfoModel stationInfoModel=new StationInfoModel();
 		
@@ -56,8 +59,18 @@ public class StationInfoService {
 		stationInfoModel.scooterUsing=scooterUsing;
 		stationInfoModel.totSlot=totSlot;
 		
+		Rectangle fistBounds=new Rectangle(100, 100, 786, 650);
+		StationQueryGUI gui=null;
+		if(first) {
+			 gui=new StationQueryGUI(stationInfoModel,fistBounds);
+			 first=false;
+		}else{
+			gui=new StationQueryGUI(stationInfoModel,bounds);
+		}
 		
-		new StationQueryGUI(stationInfoModel).setVisible(true);
+		
+		gui.setVisible(true);
+		return gui;
 	}
 }
 

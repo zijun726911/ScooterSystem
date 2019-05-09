@@ -52,7 +52,7 @@ public class ManagementSystemGUI extends JFrame {
 		btnStationState.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 22));
 		btnStationState.setBounds(441, 138, 245, 55);
 		btnStationState.addActionListener((e)->{
-			new StationInfoService().calcuStationInfo();;
+			new StationInfoService().calcuStationInfo(null);
 			
 		});
 		contentPane.add(btnStationState);

@@ -1,38 +1,40 @@
 package com.gui;
 
 import java.awt.Font;
-import java.util.HashMap;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import com.db.Session;
-import com.entity.Station;
 import com.model.OneStationInfo;
 import com.model.StationInfoModel;
+import com.service.StationInfoService;
 
 public class StationQueryGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	
 
-	/**
-	 * Launch the application.
-	 */
+	
 	
 	/**
 	 * Create the frame.
 	 */
-	public StationQueryGUI(StationInfoModel model) {
+	public StationQueryGUI(StationInfoModel model,Rectangle bounds) {
+		setTitle("Station Information");
 		OneStationInfo infoA=model.oneStationInfos.get("A");
 		OneStationInfo infoB=model.oneStationInfos.get("B");
 		OneStationInfo infoC=model.oneStationInfos.get("C");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 900, 649);
+		
+		
+		setBounds(bounds);
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
@@ -179,7 +181,7 @@ public class StationQueryGUI extends JFrame {
 		
 		JLabel lblStationInformation = new JLabel("Station Information");
 		lblStationInformation.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 30));
-		lblStationInformation.setBounds(278, 32, 360, 65);
+		lblStationInformation.setBounds(232, 31, 360, 65);
 		contentPane.add(lblStationInformation);
 		
 		JLabel lbScooterInUse = new JLabel(""+model.scooterUsing);
@@ -196,6 +198,23 @@ public class StationQueryGUI extends JFrame {
 		labelTotalScooter.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 24));
 		labelTotalScooter.setBounds(191, 513, 81, 49);
 		contentPane.add(labelTotalScooter);
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				StationQueryGUI gui=new StationInfoService().calcuStationInfo(StationQueryGUI.this.getBounds());
+				
+			
+				StationQueryGUI.this.setVisible(false);
+				
+				
+				
+			}
+		});
+		btnRefresh.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 25));
+		btnRefresh.setBounds(569, 465, 129, 42);
+		contentPane.add(btnRefresh);
 		
 	}
 }
