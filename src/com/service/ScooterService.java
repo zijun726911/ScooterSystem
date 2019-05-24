@@ -41,7 +41,7 @@ public class ScooterService {
 			if(isAllSlotFull(station)) {
 				JOptionPane.showMessageDialog(null,"All slots  are full, please return to other station!", 
 						"Slots Full",JOptionPane.WARNING_MESSAGE);
-			 
+				
 				stationGUI.switchTo(StationState.BLANK);
 				return;
 			}
