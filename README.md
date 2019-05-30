@@ -10,11 +10,12 @@
 
 
 ### Launch in Command Line
-1. Switch to the `scr` directory
+1. Switch to the `scr` directory.
 
 2.  Input command ``java Main` to start the program.
 
 ## Functions
+
 - Register a new user
 
 - Rent a scooter
