@@ -10,9 +10,9 @@
 
 
 ### Launch in Command Line
-1. Make sure that `dbfile.dat` is located at the same directory with `ScooterSystem.jar`.
+1. Switch to the `scr` directory
 
-2. Input command `java -jar ScooterSystem.jar` to start the program.
+2.  Input command ``java Main` to start the program.
 
 ## Functions
 - Register a new user

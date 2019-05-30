@@ -22,7 +22,7 @@ public class Db implements Serializable {
 	public static void readFromFile() {
 		String path=null;
 		try {
-			path=Class.forName("Main").getResource("Main.class").getFile();
+			path=Class.forName("Main").getResource("Main.class").getPath();
 		} catch (ClassNotFoundException e1) {
 			
 			e1.printStackTrace();
