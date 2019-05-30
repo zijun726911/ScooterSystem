@@ -64,7 +64,7 @@ public class RegisterGUI extends JFrame {
 		lblPassword.setBounds(75, 189, 146, 53);
 		contentPane.add(lblPassword);
 		
-		JLabel lblRegister = new JLabel("Enrollment");
+		JLabel lblRegister = new JLabel("Register");
 		lblRegister.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 33));
 		lblRegister.setBounds(205, 15, 231, 53);
 		contentPane.add(lblRegister);

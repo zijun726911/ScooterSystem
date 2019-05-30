@@ -15,8 +15,14 @@ import com.model.StationState;
 
 public class ScooterService {
 	
+	/**
+	 * rent and return the  scooter, this process contain the whole process of
+	 * @param userId user ID
+	 * @param station the station where rent or return behavior happen.
+	 * 
+	 */
 	public void rentOrReturn(String userId,Station station,StationGUI stationGUI) {
-		
+			
 		if(userId.trim().equals("")) {
 			
 			return;
@@ -27,16 +33,16 @@ public class ScooterService {
 		
 		
 		
-		
 		Session.currentUser=Session.getUserById(userId);
-		if(Session.currentUser==null) {//未注册
+		if(Session.currentUser==null) {//non-register user id
 			JOptionPane.showMessageDialog(null,"Please register Scooter system first!", 
 					"Not yet register",JOptionPane.WARNING_MESSAGE);
 		 
 			stationGUI.switchTo(StationState.BLANK);
 			return;
 		}
-		else if(Session.currentUser.isUsingScooter()){//该用户要还车
+		else if(Session.currentUser.isUsingScooter()){//this user is using a scooter currently,
+													  //he or she want to return the scooter now.
 			
 			if(isAllSlotFull(station)) {
 				JOptionPane.showMessageDialog(null,"All slots  are full, please return to other station!", 
@@ -46,7 +52,7 @@ public class ScooterService {
 				return;
 			}
 			
-			//正常还车
+			//return the scooter normally
 			Session.chosenSlot=findEmptySlot(station);
 			Session.chosenSlot.setSlotState(SlotState.RELEASED_EMPTY);
 			stationGUI.switchTo(StationState.RETURN);
@@ -167,7 +173,12 @@ public class ScooterService {
 	
 		
 	}
-			
+	 /**
+	  * 
+	  * judge if the station is full 
+	  * 
+	  * 
+	  */
 	public boolean isAllSlotFull(Station station){
 		ArrayList<Slot> slots=station.getSlots();
 		for(Slot slot:slots) {
@@ -180,6 +191,8 @@ public class ScooterService {
 		
 	}
 	
+	
+	
 	public  Slot findANonEmptySlot(Station station) {
 		ArrayList<Slot> slots=station.getSlots();
 		for(Slot slot:slots) {//借车时，释放一个slot
@@ -191,7 +204,7 @@ public class ScooterService {
 		return null;	
 	}
 	
-	
+	//
 	public  Slot findEmptySlot(Station station) {
 		ArrayList<Slot> slots=station.getSlots();
 		for(Slot slot:slots) {//借车时，释放一个slot
@@ -204,6 +217,5 @@ public class ScooterService {
 	}
 	
 	
-
 	
 }

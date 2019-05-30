@@ -1,5 +1,4 @@
 package com.service;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -22,6 +21,7 @@ import com.utils.ConsoleTable;
 import com.utils.TimeUtil;
 
 public class UserService {
+	
 	public User register(String id,String name,String email,RegisterGUI registerGUI ) {
 		
 		User existedUser=Session.getUserById(id);
@@ -82,9 +82,6 @@ public class UserService {
 		
 	}
 	
-	
-	//计算本次使用结束后会不会累计超时
-	//return today accumulation duration
 	public static long getOneDayAccuTime(User user ,Date today) {		
 		
 		ArrayList<Record> records= (ArrayList<Record>)user.getRecords().clone();
@@ -109,8 +106,7 @@ public class UserService {
 			return onDayAccuSec;
 		
 	}
-	
-	
+		
 	public static long getThisWeekAccuTime(User user) {		
 		long oneWeekAccuSec=0;
 		
@@ -134,7 +130,6 @@ public class UserService {
 
 		return oneWeekAccuSec;
 	}
-	
 	
 	public static long getTotalAccuTime(User user) {
 		long totalAccuSec=0;
@@ -223,8 +218,7 @@ public class UserService {
         bw.close();
         
 	}
-	
-	
+		
 	public void periodicallySendEmail(){
 		
 		Session.userTimer.scheduleAtFixedRate(new TimerTask() {
@@ -237,4 +231,5 @@ public class UserService {
 		},
 		0,7*24*60*60*1000);
 	}
+
 }
