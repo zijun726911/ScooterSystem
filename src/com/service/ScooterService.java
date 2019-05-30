@@ -90,6 +90,7 @@ public class ScooterService {
 					if(backEndTimer<=0) {
 						JOptionPane.showMessageDialog(null,"Fail to return the scooter!", 
 								"Fail to return the scooter",JOptionPane.WARNING_MESSAGE);
+						Session.chosenSlot.setSlotState(SlotState.LOCK_EMPTY);
 						stationGUI.switchTo(StationState.BLANK);
 						break;
 						

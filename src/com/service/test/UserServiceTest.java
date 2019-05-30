@@ -1,10 +1,10 @@
 package com.service.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.db.Db;
 import com.db.Session;
@@ -13,9 +13,9 @@ import com.entity.User;
 import com.gui.RegisterGUI;
 import com.service.UserService;
 
-class UserServiceTest {
+public class UserServiceTest {
 
-	@BeforeEach 
+	@Before
 	public void testRegister() {
 		Db.readFromFile();
 		try {
@@ -72,7 +72,7 @@ class UserServiceTest {
 	
 	
 	
-	@AfterEach
+	@After
 	public void testDelete() {
 		
 		User user=Session.getUserById("563");

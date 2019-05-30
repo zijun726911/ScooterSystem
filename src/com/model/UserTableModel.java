@@ -36,8 +36,33 @@ public class UserTableModel extends AbstractTableModel   {
 					String dayDur;
 					String weekDur;
 					String totalDur;
+					Record uncompletedLastRecord=null;
 					if(records.size()>0) {
-						Record lastRecord=records.get(records.size()-1);
+						Record lastRecord=null;
+						if(records.get(records.size()-1).endTime!=null) {
+							lastRecord=records.get(records.size()-1);
+						}else {//最后一条数据不完整，去掉最后一条数据
+							uncompletedLastRecord=records.remove(records.size()-1);
+							if(records.size()>0) {
+								lastRecord=records.get(records.size()-1);
+							}
+							else {
+								lastDur=TimeUtil.secToTime(0);
+								dayDur=TimeUtil.secToTime(0);
+								weekDur=TimeUtil.secToTime(0);
+								totalDur=TimeUtil.secToTime(0);
+								String unpaid=""+user.getUnpaidFineFine();
+								data.add(new String[]{id,name,email,lastDur,dayDur,weekDur,totalDur,unpaid,"",""});
+								records.add(uncompletedLastRecord);
+								return;
+							}
+							
+							
+						}
+							
+						
+					
+						
 						 lastDur=TimeUtil.secToTime((int)lastRecord.durSec);
 						 dayDur=TimeUtil.secToTime((int)UserService
 								.getOneDayAccuTime(user,lastRecord.startTime ));
@@ -54,6 +79,9 @@ public class UserTableModel extends AbstractTableModel   {
 					}
 					String unpaid=""+user.getUnpaidFineFine();
 					data.add(new String[]{id,name,email,lastDur,dayDur,weekDur,totalDur,unpaid,"",""});
+					if(uncompletedLastRecord!=null) {
+						records.add(uncompletedLastRecord);
+					}
 					
 				}
 			}
