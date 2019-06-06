@@ -10,6 +10,12 @@ import com.entity.User;
 import com.service.UserService;
 import com.utils.TimeUtil;
 
+/**
+ * 
+ * Data model of user table that is used in "User Information" GUI
+ * 
+ * 
+ */
 public class UserTableModel extends AbstractTableModel   {
 	
 	private int showBtnColIndex=8;
@@ -25,7 +31,9 @@ public class UserTableModel extends AbstractTableModel   {
 				// TODO Auto-generated constructor stub
 				users=Session.users;
 				data=new ArrayList<String[]>();
+				System.out.println("rows:"+users.size());
 				for(int i=0;i<users.size();i++) {
+					
 					User user=users.get(i);
 					ArrayList<Record> records= user.getRecords();
 					
@@ -54,7 +62,7 @@ public class UserTableModel extends AbstractTableModel   {
 								String unpaid=""+user.getUnpaidFineFine();
 								data.add(new String[]{id,name,email,lastDur,dayDur,weekDur,totalDur,unpaid,"",""});
 								records.add(uncompletedLastRecord);
-								return;
+								continue;
 							}
 							
 							
@@ -78,6 +86,7 @@ public class UserTableModel extends AbstractTableModel   {
 						totalDur=TimeUtil.secToTime(0);
 					}
 					String unpaid=""+user.getUnpaidFineFine();
+//					System.out.println(id+" "+name+" "+email+" "+lastDur+" "+dayDur+" "+weekDur+" "+totalDur+" "+unpaid);
 					data.add(new String[]{id,name,email,lastDur,dayDur,weekDur,totalDur,unpaid,"",""});
 					if(uncompletedLastRecord!=null) {
 						records.add(uncompletedLastRecord);

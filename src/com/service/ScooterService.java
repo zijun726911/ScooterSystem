@@ -176,8 +176,8 @@ public class ScooterService {
 	}
 	 /**
 	  * 
-	  * judge if the station is full 
 	  * 
+	  * @return  return boolean, indicating if the station is full 
 	  * 
 	  */
 	public boolean isAllSlotFull(Station station){

@@ -4,9 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.db.Db;
-
+/**
+ * Station entity, one scooter station contain many scooters 
+ *
+ * 
+ * 
+ */
 public class Station implements Serializable{
-	
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private ArrayList<Slot> slots;
 	

@@ -1,61 +1,36 @@
 package com.utils;
 
-
+/**
+ * 
+ * Print a beautiful table in  user usage E-mail
+ * */
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * 打印表格类，可以以表格的形式打印String数组。
- * 如果输出内容包含中文则仅在部分字体下有效，其他字体下排版会相对混乱，推荐使用YaHeiConsolasHybrid字体。
- * 本类所有方法都是protected，不可外部使用，推荐使用ConsoleTables类的静态方法打印内容
- * 
- * @author 田义锋Spock
- * @date 2019年4月26日
- * @version v1.0
- */
+
 public class ConsoleTable {
 
-	/**
-	 * 表格标题
-	 */
 	private String[] title;
 
-	/**
-	 * 表格内容集合
-	 */
+	
 	private List<String[]> list;
 
-	/**
-	 * 表格列数
-	 */
+	
 	private Integer columns;
 
-	/**
-	 * 表格每列最大宽度
-	 */
+	
 	private Integer[] fieldMaxLengthArr;
 
-	/**
-	 * 是否自动编号
-	 */
+	
 	private boolean autoNum;
 
-	/**
-	 * 当前编号
-	 */
+	
 	private Integer currentNum;
 
-	/**
-	 * protected构造函数
-	 * 
-	 * @param list    表格内容集合
-	 * @param title   表格标题
-	 * @param columns 表格列数
-	 * @param autoNum 是否自动编号
-	 */
+	
 	public ConsoleTable(List<String[]> list, String[] title, Integer columns, boolean autoNum) {
 		this.list = list;
 		this.title = title;
@@ -65,9 +40,7 @@ public class ConsoleTable {
 		init();
 	}
 
-	/**
-	 * 初始化
-	 */
+	
 	private void init() {
 		fieldMaxLengthArr = new Integer[columns];
 		for (int i = 0; i < columns; i++) {
@@ -92,10 +65,7 @@ public class ConsoleTable {
 		}
 	}
 
-	/**
-	 * 打印表格
-	 * @throws IOException 
-	 */
+	
 	public  void print(BufferedWriter bw) throws IOException {
 		
 		if (title != null) {
@@ -116,11 +86,7 @@ public class ConsoleTable {
 		currentNum = 1;
 	}
 
-	/**
-	 * 获取表头横线
-	 * 
-	 * @return 表头横线字符串
-	 */
+	
 	protected StringBuilder getTitleLine() {
 		StringBuilder str = new StringBuilder();
 		for (int i = 0; i < columns; i++) {
@@ -134,11 +100,7 @@ public class ConsoleTable {
 		return str;
 	}
 
-	/**
-	 * 获取表格标题
-	 * 
-	 * @return 表格标题字符串
-	 */
+
 	protected StringBuilder getTitleString() {
 		if (title == null) {
 			return null;
@@ -168,12 +130,7 @@ public class ConsoleTable {
 		return str;
 	}
 
-	/**
-	 * 根据一个String数组生成表格一行的内容
-	 * 
-	 * @param strArr 行数组
-	 * @return 表格一行内容的字符串
-	 */
+	
 	protected StringBuilder getRowString(String[] strArr) {
 		int[] fieldLengthArr = new int[strArr.length];
 		for (int i = 0; i < strArr.length; i++) {

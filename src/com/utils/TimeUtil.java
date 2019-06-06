@@ -5,6 +5,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class TimeUtil {
+	
+	/**
+	 *	convert number of seconds to 00:00:00 format 
+	 */
 	public static String secToTime(int time) {
 		String timeStr = null;
         int hour = 0;

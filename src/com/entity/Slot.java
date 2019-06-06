@@ -6,7 +6,7 @@ import com.db.Db;
 import com.model.SlotState;
 
 public class Slot implements Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private String id;
 	
 

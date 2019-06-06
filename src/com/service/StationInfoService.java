@@ -15,8 +15,13 @@ import com.model.SlotState;
 import com.model.StationInfoModel;
 
 public class StationInfoService {
-	public static boolean first=true;
 	
+	
+	
+/**
+ *  calculate station information, include total empty slots, the number of scooter in use.
+ * 
+ * */
 	public StationQueryGUI calcuStationInfo(Rectangle bounds) {
 		
 		StationInfoModel stationInfoModel=new StationInfoModel();
@@ -61,9 +66,9 @@ public class StationInfoService {
 		
 		Rectangle fistBounds=new Rectangle(100, 100, 786, 650);
 		StationQueryGUI gui=null;
-		if(first) {
+		if(bounds==null) {
 			 gui=new StationQueryGUI(stationInfoModel,fistBounds);
-			 first=false;
+			 
 		}else{
 			gui=new StationQueryGUI(stationInfoModel,bounds);
 		}

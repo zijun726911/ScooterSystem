@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimerTask;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -22,12 +23,20 @@ import com.utils.TimeUtil;
 
 public class UserService {
 	
+	
+	
+	
 	public User register(String id,String name,String email,RegisterGUI registerGUI ) {
 		
 		User existedUser=Session.getUserById(id);
 		System.out.println("existedUser:"+existedUser);
 		if(existedUser!=null) {
 			JOptionPane.showMessageDialog(null,"This ID already exists, so it cannot be registered!", 
+					"ID Unavailable",JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+		if(!isEmail(email)) {
+			JOptionPane.showMessageDialog(null,"Please input a valid e-mail!", 
 					"ID Unavailable",JOptionPane.WARNING_MESSAGE);
 			return null;
 		}
@@ -106,6 +115,11 @@ public class UserService {
 			return onDayAccuSec;
 		
 	}
+	
+	public static boolean isEmail(String email) {
+		String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+        return Pattern.matches(REGEX_EMAIL, email);
+    }
 		
 	public static long getThisWeekAccuTime(User user) {		
 		long oneWeekAccuSec=0;

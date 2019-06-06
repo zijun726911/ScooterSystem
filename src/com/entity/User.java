@@ -9,7 +9,7 @@ import java.util.TimerTask;
 import com.db.Session;
 
 public class User implements Serializable{
-	
+	private static final long serialVersionUID = 1L;
 	private boolean usingScooter;
 	private String id;
 	private String name;
@@ -39,7 +39,6 @@ public class User implements Serializable{
 	    public void run() {   
 	         User.this.unpaidFine=100;
 	         
-	   
 	    }   
 	}   
 	

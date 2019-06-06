@@ -5,7 +5,20 @@ import java.util.Date;
 
 import com.db.Db;
 
+
+
+/**
+ * 
+ * Record entity, every user have many scooter using records  
+ * @author zijun
+ *  
+ * 
+ */
 public class Record implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Date startTime;
 	public Date endTime;
 	public String startStation;

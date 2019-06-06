@@ -21,13 +21,20 @@ public class Db implements Serializable {
 	
 	public static void readFromFile() {
 		String path=null;
+		String pathPrefix=null;
 		try {
 			path=Class.forName("Main").getResource("Main.class").getPath();
+			int nameStratIndex=path.indexOf("Main.class");
+			pathPrefix=path.substring(0, nameStratIndex);
+			
 		} catch (ClassNotFoundException e1) {
 			
 			e1.printStackTrace();
 		} 
+		
 		File file = new File("dbfile.dat");
+//		System.out.println("filePath:"+file.getPath());
+//		System.out.println("file exists:"+file.exists());
 		Db dbRead = null;
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
@@ -36,7 +43,7 @@ public class Db implements Serializable {
 	 
 	        ois.close();
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getStackTrace());
 		}
 		
 		Session.stations=dbRead.stations;
