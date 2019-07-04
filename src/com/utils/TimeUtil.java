@@ -67,5 +67,15 @@ public class TimeUtil {
     }
     
     
+    public static  boolean isSameDay(Date day1,Date day2){
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+		if(fmt.format(day1).equals(fmt.format(day2))){
+			return true;
+		}else {
+			return false;
+		}
+	}
+    
+    
 }
 

@@ -1,5 +1,7 @@
 package com.service.test;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import  org.junit.Assert;
 
@@ -35,6 +37,15 @@ public class ScooterServiceTest {
 		station.getSlots().get(3).setSlotState(SlotState.LOCK_EMPTY);
 		Assert.assertEquals("4",new ScooterService().findEmptySlot(station).getId());
 	}
+	
+	@Test
+	public void testFindANonEmptySlot() {
+		Slot slot=new ScooterService().findANonEmptySlot(station);
+		Assert.assertEquals("1",slot.getId());
+		
+	}
+	
+	
 	
 	@After
 	public void clear() {

@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -79,8 +80,12 @@ public class ScooterService {
 								.get(Session.currentUser.getRecords().size()-1);
 						record.setEndStation(station.getName());
 						record.setEnd();
-						UserService.getOneDayAccuTime(Session.currentUser,record.endTime);
-
+						long onDayAccuSec=UserService.getOneDayAccuTime(Session.currentUser,record.endTime);
+						if(onDayAccuSec>2*60*60) {//判断累计超时
+							Session.currentUser.setUnpaidFineFine(100);
+							Session.currentUser.dayAvailable.avilable=false;
+							Session.currentUser.dayAvailable.date=new Date();
+						}
 						
 						JOptionPane.showMessageDialog(null,"Return successful!", 
 								"Return successful",JOptionPane.PLAIN_MESSAGE);
@@ -120,6 +125,16 @@ public class ScooterService {
 				
 			}
 			
+			if(!Session.currentUser.dayAvailable.avilable) {
+				//有未缴罚款无法借车  你今日的累计用量已经超过限制，请明天再来用车！
+				stationGUI.switchTo(StationState.UNPAID);
+				JOptionPane.showMessageDialog(null,"Your accumulative usage today has exceeded the limit, please use the scooter tomorrow!", 
+						"Having unpaid fine",JOptionPane.WARNING_MESSAGE);
+				stationGUI.switchTo(StationState.BLANK);
+				return; 
+				
+			}
+			
 			//该用户可以借车
 			 
 				 Session.chosenSlot.setSlotState(SlotState.RELEASED_NOT_PICKUP);
@@ -129,7 +144,7 @@ public class ScooterService {
 				 stationGUI.pRent.labelSlotNumber.setText(Session.chosenSlot.getId());
 
 				 new Thread(()->{//backEndTimer
-					int backEndTimer=60;
+					int backEndTimer=5;
 					while(true){
 						try {
 							timer.setText(""+backEndTimer);

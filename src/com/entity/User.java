@@ -1,8 +1,8 @@
 package com.entity;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,8 +17,15 @@ public class User implements Serializable{
 	private int unpaidFine;
 	private ArrayList<Record> records;
 	private ScooterTimerTask usingTimeout; 
+	public DayAvailable dayAvailable;
 	
-	
+	public class DayAvailable implements Serializable{
+		private static final long serialVersionUID = 1L;
+		public boolean avilable=true;
+		public Date date=new Date();
+		
+		
+	}
 	
 	
 	
@@ -39,6 +46,7 @@ public class User implements Serializable{
 	    public void run() {   
 	         User.this.unpaidFine=100;
 	         
+	   
 	    }   
 	}   
 	
@@ -46,6 +54,7 @@ public class User implements Serializable{
 	public User() {
 		records=new ArrayList<Record>();
 		usingTimeout=new ScooterTimerTask();
+		dayAvailable=new DayAvailable();
 	}
 	public ArrayList<Record> getRecords() {
 		return records;

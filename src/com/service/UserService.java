@@ -98,23 +98,19 @@ public class UserService {
 			long onDayAccuSec=0;
 			SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
 			int i=records.size()-1;
-			while(fmt.format(today)//find today record
-					.equals(fmt.format(records.get(i).getEndTime()))){
-						
+			
+			while(TimeUtil.isSameDay(today,records.get(i).getEndTime())){	
 				onDayAccuSec+=records.get(i).durSec;
 				i--;
 				if(i<0) break;
 			}	
 			
-//			System.out.println("onDayAccuSec:"+onDayAccuSec);
-			if(onDayAccuSec>2*60*60) {
-				user.setUnpaidFineFine(100);
-			}
-			
+//			System.out.println("onDayAccuSec:"+onDayAccuSec);		
 			
 			return onDayAccuSec;
 		
 	}
+	
 	
 	public static boolean isEmail(String email) {
 		String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
@@ -181,6 +177,9 @@ public class UserService {
 		}
 	}
 	
+	
+	
+	
 	private static void writeOneEmail(User user,String path) throws IOException  {
 		ArrayList<Record> records= user.getRecords();
 		
@@ -233,7 +232,7 @@ public class UserService {
         
 	}
 		
-	public void periodicallySendEmail(){
+	public static void periodicallySendEmail(){
 		
 		Session.userTimer.scheduleAtFixedRate(new TimerTask() {
 			@Override
@@ -245,5 +244,29 @@ public class UserService {
 		},
 		0,7*24*60*60*1000);
 	}
-
+	
+	
+	public static void  clearYesterdayUnavailable() {
+		ArrayList<User> users=Session.users;
+		Date today=new Date();
+		for(User user:users) {
+			if(user.dayAvailable.avilable==false) {
+				if(!TimeUtil.isSameDay(today, user.dayAvailable.date)) {//不是同一天，而是前一天
+					user.dayAvailable.avilable=true;
+				}
+			}
+		}
+	}
+	
+	public static void periodicallyWriteToDb(){
+		
+		Session.userTimer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				new Db().writeToFile();
+			}
+		}, 0, 5*1000);
+	}
+		
 }

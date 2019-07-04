@@ -9,9 +9,10 @@ class Main {
 
 	public static void main(String[] args) throws IOException {
 		Db.readFromFile();
-
-		new UserService().periodicallySendEmail();
-
+		new Db().writeToFile();
+		UserService.periodicallySendEmail();
+		UserService.periodicallyWriteToDb();
+		UserService.clearYesterdayUnavailable();
 		new MainGUI().setVisible(true);
 
 	}
